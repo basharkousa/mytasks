@@ -29,8 +29,7 @@ class SelectDayWidget extends StatelessWidget {
         switch (availableSlotsLiveData.value.status) {
           case Status.LOADING:
             return const LoadingShimmerWidget();
-            break;
-        //carousel_slider
+
           case Status.COMPLETED:
             if(availableSlotsLiveData.value.data == null){
               return Container();
@@ -43,14 +42,12 @@ class SelectDayWidget extends StatelessWidget {
               );
             }
             return buildContent();
-            break;
           case Status.ERROR:
             return ErrorsWidget(
               onRetryPressed: () => {
                 onErrorPressed()
               },
             );
-            break;
         }
       }
       return Container();

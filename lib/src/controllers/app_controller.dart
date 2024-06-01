@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/remote/exceptions/dio_error_util.dart';
-import 'package:mytasks/src/utils/basic_tools.dart';
 import '../../src/data/repository.dart';
 
 // SingleGetTickerProviderMixin

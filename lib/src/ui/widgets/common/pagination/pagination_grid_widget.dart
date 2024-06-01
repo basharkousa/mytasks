@@ -67,18 +67,7 @@ class PaginationGridWidget<T, M> extends StatelessWidget {
                   ),
                 ),
               );
-              break;
           }
-                  return const Padding(
-            padding: EdgeInsets.all(12.0),
-            child: SizedBox(
-              height: 30,
-              width: 30,
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-              ),
-            ),
-          );
         })
       ],
     );
