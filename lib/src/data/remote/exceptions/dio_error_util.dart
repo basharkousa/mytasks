@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:mytasks/src/data/models/errorappmodel/error_app_model.dart';
 
 class DioErrorUtil {
   // general methods:------------------------------------------------------------
@@ -22,15 +23,11 @@ class DioErrorUtil {
           break;
         case DioExceptionType.badResponse:
           try {
-            //todo we must add Error model which is related to Scrap error response api
-/*            ErrorScrapModel errorScrapModel =
-            ErrorScrapModel.fromJson(error.response!.data!);
-            if (errorScrapModel.error!.contains('invalid_token') || errorScrapModel.error_descrip!.contains('Invalid')) {
-              AppController.controller.login();
-              print('invalid_token_Please_re');
-            }
-            // if()
-            errorDescription = "${errorScrapModel.error_descrip}";*/
+            //todo we must add Error model which is related to Api error response api
+            ErrorAppModel errorappmodel =
+            ErrorAppModel.fromJson(error.response!.data!);
+
+            errorDescription = "${errorappmodel.error}";
           } catch (error, stacktrace) {
             print("DioExceptionTypeBadResponse $error $stacktrace");
           }

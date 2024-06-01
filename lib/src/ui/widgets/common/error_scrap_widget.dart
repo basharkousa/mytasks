@@ -6,12 +6,12 @@ import '../../../../generated/assets.gen.dart';
 import '../../../../generated/locales.g.dart';
 import '../../../configs/dimens.dart';
 
-class ErrorScrapWidget extends StatelessWidget {
+class ErrorAppWidget extends StatelessWidget {
   final String? errorMessage;
 
   final Function()? onRetryPressed;
 
-  const ErrorScrapWidget({Key? key, this.errorMessage, this.onRetryPressed})
+  const ErrorAppWidget({Key? key, this.errorMessage, this.onRetryPressed})
       : super(key: key);
 
   @override

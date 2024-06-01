@@ -1,8 +1,9 @@
 import 'dart:ui';
 
+import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
+
 import 'local/local_data_source.dart';
-import 'models/api_response.dart';
-import 'models/authmodels/signupresponse/signup_respose.dart';
+import 'models/api_state.dart';
 import 'models/base_api_response.dart';
 import 'models/user/user.dart';
 import 'remote/remote_data_source.dart';
@@ -17,29 +18,17 @@ class Repository extends BaseApiResponse {
 
   /* --------------------------------API METHODS------------------------------------- */
 
-  Future<SignUpResponse> doSignUp(User user) =>
-      _remoteDataSource.doSignUp(user);
+  //I Added to ways to call Api to show the differences between them here and in Controller and why I used Stream instead of Future.
 
-  Stream<ApiResponse<SignUpResponse>> signUpEasyWay(User user) async * {
-    yield ApiResponse.loading("");
-    yield await safeApiCall(() => _remoteDataSource.doSignUp(user));
+  Future<ProjectsResponse> getProjects() =>
+      _remoteDataSource.getProjects();
+
+  Stream<ApiState<ProjectsResponse>> getProjectsEasyWay() async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.getProjects());
   }
 
-  //Todo Examples here for calling api methods
-
-  /* Future<CurrentCountryResponse> getCurrentCountryDetails() =>
-      _remoteDataSource.getCurrentCountryDetails();
-
-  Future<GetTermsResponse> getTerms() => _remoteDataSource.getTerms();
-
-  Future<CompaniesResponse> getCompanies() => _remoteDataSource.getCompanies();
-
-  Future<CountryResponse> getCountries() => _remoteDataSource.getCountries();*/
-
-
   /* --------------------------------SHARED_PREFERENCES METHODS------------------------------------- */
-
-
 
   Future<Locale> get fetchLocale => _localDataSource!.fetchLocale;
 

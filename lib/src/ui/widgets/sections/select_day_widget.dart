@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../configs/dimens.dart';
-import '../../../data/models/api_response.dart';
+import '../../../data/models/api_state.dart';
 import '../../widgets/common/error_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -10,7 +10,7 @@ import 'package:shimmer/shimmer.dart';
 class SelectDayWidget extends StatelessWidget {
 
   // final Rx<ApiResponse<AvailableSlotsDesignerResponse>> availableSlotsLiveData;
-  final Rx<ApiResponse> availableSlotsLiveData;
+  final Rx<ApiState> availableSlotsLiveData;
   // final RxList<DayInfo> currentAvailableDesignerSlots;
   final RxList currentAvailableDesignerSlots;
   final Function() onErrorPressed;

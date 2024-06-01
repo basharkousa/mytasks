@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../data/models/api_response.dart';
+import '../../../data/models/api_state.dart';
 import '../../widgets/common/error_widget.dart';
 import '../../widgets/common/loading_widget.dart';
 
 import 'package:shimmer/shimmer.dart';
 
 class GetXStateWidget<T> extends StatelessWidget {
-  final Rx<ApiResponse<T>> snapshotLiveData;
+  final Rx<ApiState<T>> snapshotLiveData;
   final Widget Function(T)? contentWidget;
   final Widget? loadingWidget;
   final Widget? errorWidget;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../data/models/api_response.dart';
+import '../../../../data/models/api_state.dart';
 
 class PaginationGridWidget<T, M> extends StatelessWidget {
   final List<M>? itemsList;
@@ -8,7 +8,7 @@ class PaginationGridWidget<T, M> extends StatelessWidget {
   final Function()? onRetryClick;
   final ScrollController? scrollController;
   final IndexedWidgetBuilder? itemBuilder;
-  final Rx<ApiResponse<T>>? paginationLiveData;
+  final Rx<ApiState<T>>? paginationLiveData;
   final Widget? loadingWidget;
 
   const PaginationGridWidget(

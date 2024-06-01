@@ -1,18 +1,23 @@
+import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
+
 import '../models/authmodels/signupresponse/signup_respose.dart';
 import '../models/user/user.dart';
 import 'api/moduls/auth_api.dart';
-import 'api/scrap_api.dart';
+import 'api/app_api.dart';
 
 
 class RemoteDataSource {
 
-  final ScrapApi _scrapApi;
+  final AppApi _appApi;
   final AuthApi _authApi;
 
   RemoteDataSource(
-      this._scrapApi,
+      this._appApi,
       this._authApi,
 );
+
+  Future<ProjectsResponse> getProjects() => _appApi.getProjectsRequest();
+
 
   Future<SignUpResponse> doSignUp(User user) => _authApi.signUpRequest(user);
 

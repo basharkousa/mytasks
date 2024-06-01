@@ -21,8 +21,6 @@ class LocaleKeys {
   static const check_your_modem_and_router = 'check_your_modem_and_router';
   static const reconnect_to_Wi_Fi = 'reconnect_to_Wi_Fi';
   static const reload = 'reload';
-  static const best_choice_to_buy_car_in_auction =
-      'best_choice_to_buy_car_in_auction';
   static const best_choice_to_begin_good_development =
       'best_choice_to_begin_good_development';
 
@@ -42,8 +40,6 @@ class Locales {
     'check_your_modem_and_router': 'Check your modem and router',
     'reconnect_to_Wi_Fi': 'Reconnect to Wi-Fi',
     'reload': 'RELOAD',
-    'best_choice_to_buy_car_in_auction':
-        'Your best choice! Buy or sell your scrap car at auction',
     'best_choice_to_begin_good_development':
         'Your best choice to begin a clean development',
     'best_choice_to_organize_your_tasks':'Your best choice to organize your tasks'
@@ -59,8 +55,6 @@ class Locales {
     'check_your_modem_and_router': 'تحقق من المودم و الراوتر',
     'reconnect_to_Wi_Fi': 'إعادة الاتصال بشبكة Wi-Fi',
     'reload': 'إعادة تحميل',
-    'best_choice_to_buy_car_in_auction':
-        'خيارك الأفضل! بيع أو اشتري سيارتك السكراب بالمزاد',
     'best_choice_to_begin_good_development':
         'خيارك الأفضل! لبدأ عملية تطويرية نظيفة!!',
     'best_choice_to_organize_your_tasks':'خيارك الأفضل! لتنظيم تاسكاتك!!'

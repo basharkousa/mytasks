@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../data/models/api_response.dart';
+import '../../../../data/models/api_state.dart';
 
 class PaginationListWidget<T, M> extends StatelessWidget {
   final List<M>? itemsList;
@@ -9,7 +9,7 @@ class PaginationListWidget<T, M> extends StatelessWidget {
   final Widget? loadingWidget;
   final ScrollController? scrollController;
   final IndexedWidgetBuilder? itemBuilder;
-  final Rx<ApiResponse<T>>? paginationLiveData;
+  final Rx<ApiState<T>>? paginationLiveData;
 
   const PaginationListWidget(
       {Key? key,

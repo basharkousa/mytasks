@@ -36,7 +36,7 @@ class App extends StatelessWidget {
               Get.find<SharedPreferenceHelper>().currentLanguage ?? 'en'),
           translationsKeys: AppTranslation.translations,
           debugShowMaterialGrid: false,
-          title: "scrap",
+          title: "My Tasks App",
           // theme: AppTheme.darkTheme(Get.find<SharedPreferenceHelper>().currentLanguage??'ar'),
           theme: Get.find<SharedPreferenceHelper>().isDarkMode
               ? AppTheme.darkTheme(
