@@ -1,0 +1,15 @@
+{
+  "title": "مرحبا!",
+  "message": "هذه هي اللغة العربية",
+  "connection_error": "تحقق من اتصال الانتذنت لديك من فضلك",
+  "no_internet": "لا يوجد اتصال بالإنترنت",
+  "Looks_like_you_have_lost_connection": "يبدو أنك فقدت الاتصال بشبكة WI-FI أو اتصال إنترنت آخر",
+  "try_these_steps": "جرب هذه الخطوات لإعادة الاتصال بالإنترنت :",
+  "check_your_modem_and_router": "تحقق من المودم و الراوتر",
+  "reconnect_to_Wi_Fi": "إعادة الاتصال بشبكة Wi-Fi",
+  "reload": "إعادة تحميل",
+  "best_choice_to_buy_car_in_auction": "خيارك الأفضل! بيع أو اشتري سيارتك السكراب بالمزاد",
+  "best_choice_to_begin_good_development": "خيارك الأفضل! لبدأ عملية تطويرية نظيفة!!",
+  "best_choice_to_organize_your_tasks":"خيارك الأفضل! لتنظيم تاسكاتك!!"
+
+}
