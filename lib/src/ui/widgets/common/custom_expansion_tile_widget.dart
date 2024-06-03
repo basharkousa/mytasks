@@ -65,9 +65,9 @@ class CustomExpansionTile extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsetsDirectional.only(
-                    start: Dimens.main_margin,
+                    start: Dimens.mainMargin,
                     bottom: 8.0.h,
-                    end: Dimens.main_margin),
+                    end: Dimens.mainMargin),
                 child: body,
               )
             ],

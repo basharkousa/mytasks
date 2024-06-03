@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:get/get.dart';
+import 'package:mytasks/src/data/remote/api/moduls/section_api.dart';
 import '../../../data/remote/api/clients/dio_client.dart';
 import '../../../data/remote/api/clients/rest_client.dart';
 import '../../../data/remote/api/moduls/auth_api.dart';
@@ -82,10 +83,15 @@ class RemoteBindings extends Bindings {
       return AuthApi(Get.find(),Get.find());
     },fenix: true);
 
+    Get.lazyPut<SectionApi>(() {
+      return SectionApi(Get.find(),Get.find());
+    },fenix: true);
+
     Get.lazyPut<RemoteDataSource>(() {
       return RemoteDataSource(
           Get.find<AppApi>(),
           Get.find<AuthApi>(),
+          Get.find<SectionApi>(),
           );
     }, fenix: true);
 

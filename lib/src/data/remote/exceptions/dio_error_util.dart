@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mytasks/src/data/models/errorappmodel/error_app_model.dart';
+import 'package:mytasks/src/utils/basic_tools.dart';
 
 class DioErrorUtil {
   // general methods:------------------------------------------------------------
@@ -41,6 +42,7 @@ class DioErrorUtil {
         case DioExceptionType.connectionError:
           errorDescription =
               "Connection to API server failed due to connection error!!";
+          BasicTools.showToastMessage(errorDescription);
           break;
       }
     } else {

@@ -1,14 +1,17 @@
 class Endpoints {
 
 
+
   Endpoints._();
 
   // production
   static const String baseUrl = "https://api.todoist.com/rest/v2/";
   // static const baseImageUrl = "https://image.exampe.com/t/p/w342";
-  static String projects = "projects";
   static String? signUp = "sign-up";
   static String? logIn = "login";
+
+  static String projects = "projects";
+  static String sections = "sections";
 
 
   // receiveTimeout

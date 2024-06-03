@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_screen.dart';
+import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_screen.dart';
 import '../../ui/screens/getStartedScreens/splashScreen/splash_screen.dart';
 
 class Routes {
@@ -10,10 +12,14 @@ class Routes {
       name: SplashScreenPage.route,
       page: () =>  SplashScreenPage(),
     ),
-    // GetPage(
-    //   name: HomePage.homePageRoute,
-    //   page: () => HomePage(),
-    // ),
+    GetPage(
+      name: ProjectsScreen.route,
+      page: () => ProjectsScreen(),
+    ),
+    GetPage(
+      name: ProjectDetailsScreen.route,
+      page: () => ProjectDetailsScreen(),
+    ),
   ];
 
   static Route<dynamic> generateRoute(RouteSettings settings,)  {

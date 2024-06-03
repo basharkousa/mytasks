@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mytasks/src/configs/colors.dart';
 
 class LoadingWidget extends StatelessWidget {
   final String? loadingMessage;
@@ -11,17 +13,17 @@ class LoadingWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
+          /*Text(
             loadingMessage??" Loading ..",
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.black45,
               fontSize: 12,
             ),
-          ),
-          const SizedBox(height: 24),
-          const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+          ),*/
+          SizedBox(height: 24.h),
+          CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.lightAccent),
           ),
         ],
       ),

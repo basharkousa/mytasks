@@ -12,14 +12,12 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
   static AppController controller = Get.find();
 
   var projectsResponseLiveData = ApiState<ProjectsResponse>.loading().obs;
-
   //I Added to ways to call Api to show the differences between them here and in Repository.
   getProjectsEasyWay() {
     repository.getProjectsEasyWay().listen((event) {
       projectsResponseLiveData.value = event;
     });
   }
-
   getProjects() async {
     projectsResponseLiveData.value = ApiState.loading();
     try {
@@ -42,9 +40,8 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
   @override
   void onInit() async {
     print('AppController_init()');
-    getProjectsEasyWay();
+    // getProjectsEasyWay();
     listenToFirebase();
-
     super.onInit();
   }
 

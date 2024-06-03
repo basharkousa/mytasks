@@ -4,12 +4,12 @@ import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/ui/widgets/buttons/button_rounded.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 
-class AppBarDefault extends StatelessWidget implements PreferredSizeWidget{
+class AppBarProjects extends StatelessWidget implements PreferredSizeWidget{
   final bool transparent;
   final String? title;
   final Color? backgroundColor;
 
-  AppBarDefault({super.key, this.transparent = false, this.title,this.backgroundColor});
+  AppBarProjects({super.key, this.transparent = false, this.title,this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,12 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget{
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
+               /* Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: ButtonRounded(icon: Icon(Icons.settings,color: AppColors.lightAccent,),).onClickBounce(() {
+                    if (Navigator.canPop(context)) {Navigator.pop(context);}
+                  }),
+                ),*/
                 Align(alignment: AlignmentDirectional.center,child: Text(
                   title??"title",
                   textAlign: TextAlign.start,

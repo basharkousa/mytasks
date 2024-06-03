@@ -111,8 +111,8 @@ class ErrorAppWidget extends StatelessWidget {
     return Container(
       height: 42.00,
       margin: EdgeInsetsDirectional.only(
-          start: Dimens.main_margin,
-          end: Dimens.main_margin,
+          start: Dimens.mainMargin,
+          end: Dimens.mainMargin,
           bottom: 20),
       width: double.infinity,
       child: ElevatedButton(

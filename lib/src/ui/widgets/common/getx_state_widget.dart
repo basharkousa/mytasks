@@ -22,8 +22,7 @@ class GetXStateWidget<T> extends StatelessWidget {
       this.errorWidget,
       this.loadingWidget,
       this.onRetryClicked,
-      this.withShimmer = false
-      });
+      this.withShimmer = false});
 
   @override
   Widget build(BuildContext context) {
@@ -56,23 +55,26 @@ class GetXStateWidget<T> extends StatelessWidget {
   // }
 
   buildLoading() {
-    return withShimmer? Shimmer.fromColors(
-      baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
-      highlightColor:
-          Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
-      child: Container(
-        child: loadingWidget ?? LoadingWidget(),
-      ),
-    ):  Container(
-      child: loadingWidget ?? LoadingWidget(),
-    );
+    return withShimmer
+        ? Shimmer.fromColors(
+            baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
+            highlightColor: Get.isDarkMode
+                ? Colors.white12.withOpacity(0.5)
+                : Colors.grey[100]!,
+            child: Container(
+              child: loadingWidget ?? LoadingWidget(),
+            ),
+          )
+        : Container(
+            child: loadingWidget ?? LoadingWidget(),
+          );
   }
 
   Widget buildError() {
     return errorWidget ??
         ErrorsWidget(
           errorMessage: '',
-          onRetryPressed: () => {onRetryClicked!()},
+          onRetryPressed: () => {if (onRetryClicked != null) onRetryClicked!()},
         );
   }
 

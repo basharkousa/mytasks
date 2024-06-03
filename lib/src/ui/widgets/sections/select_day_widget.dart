@@ -126,7 +126,7 @@ class LoadingShimmerWidget extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return  Container(
                       margin: EdgeInsetsDirectional.only(
-                          start: Dimens.main_margin, top: 4, bottom: 4,end: 2.0),
+                          start: Dimens.mainMargin, top: 4, bottom: 4,end: 2.0),
                       // height: Dimens.card_category_height,
                       // width: Dimens.card_category_width,
                       decoration: BoxDecoration(
