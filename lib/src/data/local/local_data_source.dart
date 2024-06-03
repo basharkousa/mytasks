@@ -24,6 +24,6 @@ class LocalDataSource {
     listH.add(query);
     List<String> reversedList = List.from(listH.reversed);
     return _sharedPrefsHelper.saveSearchQuery(reversedList);
-    return _sharedPrefsHelper.saveSearchQuery([]);
+    // return _sharedPrefsHelper.saveSearchQuery([]);
   }
 }

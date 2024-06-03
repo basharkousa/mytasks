@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
+import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/sectionsresponse/sections_response.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
 
 import 'local/local_data_source.dart';
 import 'models/api_state.dart';
@@ -35,6 +37,14 @@ class Repository extends BaseApiResponse {
     yield ApiState.loading();
     yield await safeApiCall(() => _remoteDataSource.getSections(project));
   }
+
+ /* Stream<ApiState<TasksResponse>> getTasks(
+      {ProjectModel? project, SectionModel? section}) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.getTasks(project:project,section:section));
+  }*/
+  Future<TasksResponse> getTasks({ProjectModel? project, SectionModel? section}) =>
+      _remoteDataSource.getTasks(project:project,section:section);
 
   /* --------------------------------SHARED_PREFERENCES METHODS------------------------------------- */
 

@@ -1,3 +1,7 @@
+import 'package:get/get.dart';
+import 'package:mytasks/src/data/models/api_state.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
+
 /// id : "157148942"
 /// project_id : "2300344346"
 /// order : 2
@@ -20,7 +24,9 @@ class SectionModel {
   String? projectId;
   int? order;
   String? name;
-SectionModel copyWith({  String? id,
+  var tasksResponseLiveData = ApiState<TasksResponse>.loading().obs;
+
+  SectionModel copyWith({  String? id,
   String? projectId,
   int? order,
   String? name,

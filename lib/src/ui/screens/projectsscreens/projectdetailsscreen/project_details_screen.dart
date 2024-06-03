@@ -70,8 +70,8 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
             key: ObjectKey(textItem),
             child: Container(
                 width: Get.width/2,
-
-                child: Text(textItem.s)),
+                // child: Text(textItem.taskModel.content??"content")),
+                child: Text(textItem.taskModel.content??"content")),
           );
         },
         groupConstraints: BoxConstraints.expand(width: Get.width*0.40),

@@ -1,9 +1,14 @@
 import 'package:appflowy_board/appflowy_board.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
+import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/sectionsresponse/sections_response.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
+import 'package:mytasks/src/data/remote/exceptions/dio_error_util.dart';
 import 'package:mytasks/src/data/repository.dart';
 
 // with SingleGetTickerProviderMixin
@@ -20,7 +25,6 @@ class ProjectDetailsController extends GetxController{
     repository.getSections(project).listen((event) {
       sectionsResponseLiveData.value = event;
       switch(sectionsResponseLiveData.value.status){
-        
         case Status.LOADING:
           break;
         case Status.COMPLETED:
@@ -51,7 +55,7 @@ class ProjectDetailsController extends GetxController{
     appFlowyController.enableGroupDragging(false);
     getSections();
 
-   /* final group1 = AppFlowyGroupData(
+    /* final group1 = AppFlowyGroupData(
         id: "ToDo",
         name: "To Do",
         items: [
@@ -82,25 +86,64 @@ class ProjectDetailsController extends GetxController{
 
   }
 
-  void createSections(SectionsResponse? data) {
-    data?.sections?.forEach((section){
+  void createSections(SectionsResponse? data) async{
+
+    for(SectionModel section in data?.sections??[]){
       final group = AppFlowyGroupData(
           id: "${section.name}",
           name: "${section.name}",
-          items: [
-            TaskItemFlowy("Card 1"),
-            TaskItemFlowy("Card 2"),
-          ]);
-      appFlowyController.addGroup(group);
+          items: List<AppFlowyGroupItem>.from(await getTasks(project,section)));
 
-    });
+      appFlowyController.addGroup(group);
+    }
+    // data?.sections?.forEach((section){
+    //
+    // });
+  }
+
+  getTasks(ProjectModel project, SectionModel section) async{
+    // List<TaskItemFlowy> taskItemFlowyList = [TaskItemFlowy("Card 1"),];
+    List<TaskItemFlowy> taskItemFlowyList = [];
+
+    section.tasksResponseLiveData.value = ApiState.loading();
+    try {
+      TasksResponse tasksResponse = await repository.getTasks(project: project,section: section);
+      section.tasksResponseLiveData.value = ApiState.completed(tasksResponse);
+      section.tasksResponseLiveData.value.data?.tasks?.forEach((task){
+        taskItemFlowyList.add(TaskItemFlowy(task));
+      });
+    } on DioException catch (error, stacktrace) {
+      section.tasksResponseLiveData.value =
+          ApiState.error(DioErrorUtil.handleError(error));
+      print('DioException$error $stacktrace');
+    } catch (error, stacktrace) {
+      section.tasksResponseLiveData.value = ApiState.error(error.toString());
+      print('OtherException:$error $stacktrace');
+    }
+
+
+    /* repository.getTasks(project: project,section: section).listen((event){
+       section.tasksResponseLiveData.value = event;
+       switch(section.tasksResponseLiveData.value.status){
+         case Status.LOADING:
+           break;
+         case Status.COMPLETED:
+           section.tasksResponseLiveData.value.data?.tasks?.forEach((task){
+             taskItemFlowyList.add(TaskItemFlowy(task));
+           });
+           break;
+         case Status.ERROR:
+           break;
+       }
+    });*/
+    return taskItemFlowyList;
   }
 }
 
 class TaskItemFlowy extends AppFlowyGroupItem {
-  final String s;
-  TaskItemFlowy(this.s);
+  final TaskModel taskModel;
+  TaskItemFlowy(this.taskModel);
 
   @override
-  String get id => s;
+  String get id => taskModel.id.toString();
 }
