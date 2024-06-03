@@ -24,7 +24,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
         ),
         body: Container(
           margin: EdgeInsetsDirectional.only(
-              start: Dimens.mainMargin, end: Dimens.mainMargin),
+              start: 4.w, end: 4.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,

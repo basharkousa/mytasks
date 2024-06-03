@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_controller.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_controller.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_controller.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_controller.dart';
 import '../../controllers/app_controller.dart';
 import '../../data/repository.dart';
 import 'modules/local_bindings.dart';
@@ -41,6 +44,15 @@ class AppBindings extends Bindings {
       return ProjectDetailsController();
     });
 
+    Get.create<AddTaskController>(() {
+      return AddTaskController();
+    });
+    Get.create<CommentsController>(() {
+      return CommentsController();
+    });
+    Get.create<EditTaskController>(() {
+      return EditTaskController();
+    });
 
     /*---------------------------- SHOPS CONTROLLERS -------------------------------*/
 
