@@ -21,19 +21,33 @@ class ProjectDetailsController extends GetxController{
   ProjectDetailsController();
 
   var sectionsResponseLiveData = ApiState<SectionsResponse>.loading().obs;
-  getSections() {
-    repository.getSections(project).listen((event) {
-      sectionsResponseLiveData.value = event;
-      switch(sectionsResponseLiveData.value.status){
-        case Status.LOADING:
-          break;
-        case Status.COMPLETED:
-          createSections(sectionsResponseLiveData.value.data);
-          break;
-        case Status.ERROR:
-          break;
-      }
-    });
+  getSections() async {
+    sectionsResponseLiveData.value = ApiState.loading();
+    try {
+      SectionsResponse sectionsResponse = await repository.getSections(project);
+      createSections(sectionsResponse);
+      // sectionsResponseLiveData.value = ApiState.completed(sectionsResponse);
+    } on DioException catch (error, stacktrace) {
+      sectionsResponseLiveData.value =
+          ApiState.error(DioErrorUtil.handleError(error));
+      print('DioException$error $stacktrace');
+    } catch (error, stacktrace) {
+      sectionsResponseLiveData.value = ApiState.error(error.toString());
+      print('OtherException:$error $stacktrace');
+    }
+
+    // repository.getSections(project).listen((event) {
+    //   sectionsResponseLiveData.value = event;
+    //   switch(sectionsResponseLiveData.value.status){
+    //     case Status.LOADING:
+    //       break;
+    //     case Status.COMPLETED:
+    //
+    //       break;
+    //     case Status.ERROR:
+    //       break;
+    //   }
+    // });
   }
 
   final AppFlowyBoardController appFlowyController = AppFlowyBoardController(
@@ -42,10 +56,10 @@ class ProjectDetailsController extends GetxController{
       // debugPrint('Move item from $fromIndex to $toIndex');
     },
     onMoveGroupItem: (groupId, fromIndex, toIndex) {
-      // debugPrint('Move $groupId:$fromIndex to $groupId:$toIndex');
+      debugPrint('Move $groupId:$fromIndex to $groupId:$toIndex');
     },
     onMoveGroupItemToGroup: (fromGroupId, fromIndex, toGroupId, toIndex) {
-      // debugPrint('Move $fromGroupId:$fromIndex to $toGroupId:$toIndex');
+      debugPrint('Move $fromGroupId:$fromIndex to $toGroupId:$toIndex');
     },
   );
 
@@ -87,18 +101,18 @@ class ProjectDetailsController extends GetxController{
   }
 
   void createSections(SectionsResponse? data) async{
-
     for(SectionModel section in data?.sections??[]){
       final group = AppFlowyGroupData(
-          id: "${section.name}",
+          id: "${section.id}",
           name: "${section.name}",
           items: List<AppFlowyGroupItem>.from(await getTasks(project,section)));
 
       appFlowyController.addGroup(group);
     }
-    // data?.sections?.forEach((section){
-    //
-    // });
+
+    //to stop the Loading when the all the tasks are loaded!!
+    sectionsResponseLiveData.value = ApiState.completed(data);
+
   }
 
   getTasks(ProjectModel project, SectionModel section) async{

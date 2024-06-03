@@ -32,17 +32,9 @@ class Repository extends BaseApiResponse {
     yield await safeApiCall(() => _remoteDataSource.getProjects());
   }
 
+  Future<SectionsResponse> getSections(ProjectModel project) =>
+      _remoteDataSource.getSections(project);
 
-  Stream<ApiState<SectionsResponse>> getSections(ProjectModel project) async * {
-    yield ApiState.loading();
-    yield await safeApiCall(() => _remoteDataSource.getSections(project));
-  }
-
- /* Stream<ApiState<TasksResponse>> getTasks(
-      {ProjectModel? project, SectionModel? section}) async * {
-    yield ApiState.loading();
-    yield await safeApiCall(() => _remoteDataSource.getTasks(project:project,section:section));
-  }*/
   Future<TasksResponse> getTasks({ProjectModel? project, SectionModel? section}) =>
       _remoteDataSource.getTasks(project:project,section:section);
 
