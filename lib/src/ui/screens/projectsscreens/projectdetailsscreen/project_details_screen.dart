@@ -1,5 +1,6 @@
 import 'package:appflowy_board/appflowy_board.dart';
 import 'package:get/get.dart';
+import 'package:marquee_widget/marquee_widget.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,32 +88,49 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
             key: ObjectKey(textItem),
             child: Container(
                 width: Get.width/2,
-                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                padding: EdgeInsets.only(left:4.w),
                 decoration: ShapeDecoration(
-                  color: Colors.white,
+                  color: getSectionColor(group),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1.w, color: Color(0x99E6E6E6)),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
-                child:Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 4.h,),
-                    Row(children: [
-                      Text(textItem.taskModel.content??"content",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12.sp),),
-                      Expanded(child: Container()),
-                      Icon(Icons.keyboard_control_outlined,size: 18.w,color: Colors.black38,)
+                child:Container(
+
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(8.r),bottomRight:  Radius.circular(8.r)),
+                    ),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal:4.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 4.h,),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        Expanded(
+                          child: Text(textItem.taskModel.content??"content",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(fontWeight: FontWeight.w600,fontSize: 12.sp),),
+                        ),
+                        // Expanded(child: Container()),
+                        Icon(Icons.keyboard_control_outlined,size: 18.w,color: Colors.black38,)
+                      ],),
+                      SizedBox(height: 8.h,),
+                      Text(textItem.taskModel.description??"content"),
+                      SizedBox(height: 8.h,),
                     ],),
-                    SizedBox(height: 8.h,),
-                    Text(textItem.taskModel.description??"content"),
-                    SizedBox(height: 4.h,),
-                  ],)),
+                )),
             // margin: EdgeInsets.all(4.w),
           );
         },
-        groupConstraints: BoxConstraints.expand(width: Get.width*0.40),
+        groupConstraints: BoxConstraints.expand(width: Get.width*0.46),
 
       );
     },

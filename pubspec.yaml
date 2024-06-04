@@ -67,6 +67,7 @@ dependencies:
   webview_flutter: ^4.4.2
   flutter_widget_from_html_core: ^0.14.7
   intl_phone_field: ^3.2.0
+  country_code_picker: ^3.0.0
   proste_indexed_stack: ^0.2.4
   readmore: ^2.2.0
   fluttertoast: ^8.2.4
@@ -74,6 +75,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   spring_button: ^2.0.0
   appflowy_board: ^0.1.0
+
 
 dev_dependencies:
   flutter_test:
