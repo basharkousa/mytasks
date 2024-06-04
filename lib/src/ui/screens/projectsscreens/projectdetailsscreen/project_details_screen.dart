@@ -81,7 +81,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
               ],
             ),
           ),).onClickBounce((){
-              controller.goToAddTaskScreen(group,data);
+              controller.goToAddTaskScreen(group,data!);
           });
         },
         cardBuilder: (context, group, groupItem) {

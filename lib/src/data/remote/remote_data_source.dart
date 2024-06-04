@@ -2,6 +2,8 @@ import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/sectionsresponse/sections_response.dart';
+import 'package:mytasks/src/data/models/tasksmodels/task_form_model.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
 import 'package:mytasks/src/data/remote/api/moduls/section_api.dart';
 import 'package:mytasks/src/data/remote/api/moduls/task_api.dart';
@@ -32,6 +34,17 @@ class RemoteDataSource {
 
   Future<TasksResponse> getTasks(
           {ProjectModel? project, SectionModel? section}) => _taskApi.getTasksRequest(project:project,section:section);
+
+
+  Future<TaskModel> postTask(
+      TaskForm taskForm) => _taskApi.postTaskRequest(taskForm);
+
+  Future<TaskModel> updateTask(
+      {TaskForm? taskForm, var taskId}) => _taskApi.updateTaskRequest(taskForm:taskForm,taskId:taskId);
+
+
+  Future deleteTask(
+      int taskId) => _taskApi.deleteTaskRequest(taskId);
 
 
   Future<SignUpResponse> doSignUp(User user) => _authApi.signUpRequest(user);

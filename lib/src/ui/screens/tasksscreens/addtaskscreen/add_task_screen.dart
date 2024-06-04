@@ -93,16 +93,13 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
 
   Widget buildTaskFieldTitle(BuildContext context) {
     return DefaultTextField(
-      // controller: controller.phoneNumberController,
-      // validator: (value) => check(value),
+      controller: controller.taskTitleEditingController,
       textValidType: TextValidType.GENERAL,
       onSaved: (value) => controller.taskForm.content = value.toString(),
       // initialValue: controller.user.value.email,
       onFieldSubmitted: (_) {
         // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
       },
-      // initialValue: controller.user.value.password,
-      // focusNode: controller.phoneFocusNode,
       hintText: LocaleKeys.enter_task_title.tr,
       enabled: true,
       title: LocaleKeys.task_title.tr,
@@ -117,9 +114,51 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
       isRequired: true,
     );
   }
+  Widget buildDueDateTextField(BuildContext context) {
+    return DefaultTextField(
+      controller: controller.dueDateEditingController,
+      textValidType: TextValidType.NONE,
+      onSaved: (value) => controller.taskForm.dueDate = value,
+      // initialValue: controller.user.value.email,
+      onFieldSubmitted: (_) {
+        // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
+      },
+      // initialValue: controller.user.value.password,
+      onTap: () async{
+        final datePick = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1900),
+            lastDate: DateTime(2100));
+        if (datePick != null) {
+          controller.taskForm.dueDate =
+          "${datePick.year}-${datePick.month}-${datePick.day}";
+          print("selectedDate: ${"${datePick.year}-${datePick.month}-${datePick.day}"}");
+          // isDateSelected=true;
+          // put it here
+          controller.dueDateEditingController.text =
+          controller.taskForm.dueDate!; // 08/14/2019
+
+        }
+      },
+      // focusNode: controller.phoneFocusNode,
+      hintText: LocaleKeys.task_due_date_desc.tr,
+      enabled: true,
+      readOnly: true,
+      title: LocaleKeys.task_due_date_title.tr,
+      // isObscure: true,
+      prefixIcon: Assets.icons.svg.icCalendar.svg(height: 10.h, width: 10.w),
+      suffixIcon: Icon(
+        Icons.keyboard_arrow_down,
+        color: Color(0xffA6A6A6),
+      ),
+      textInputAction: TextInputAction.next,
+      isRequired: false,
+    );
+  }
   Widget buildTaskDescriptionTextField(BuildContext context) {
     return DefaultTextField(
-      // controller: controller.carDescriptionEditingController,
+      controller: controller.taskDescriptionEditingController,
       textValidType: TextValidType.GENERAL,
       keyboardType: TextInputType.multiline,
       maxLines: 6,
@@ -147,38 +186,10 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
       isRequired: true,
     );
   }
-  Widget buildDueDateTextField(BuildContext context) {
-    return DefaultTextField(
-      // controller: controller.brandEditingController,
-      textValidType: TextValidType.NONE,
-      // onSaved: (value) => controller.user.fkCityId = int.parse(value!),
-      // initialValue: controller.user.value.email,
-      onFieldSubmitted: (_) {
-        // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
-      },
-      // initialValue: controller.user.value.password,
-      onTap: () {
-
-      },
-      // focusNode: controller.phoneFocusNode,
-      hintText: LocaleKeys.task_due_date_desc.tr,
-      enabled: true,
-      readOnly: true,
-      title: LocaleKeys.task_due_date_title.tr,
-      // isObscure: true,
-      prefixIcon: Assets.icons.svg.icCalendar.svg(height: 10.h, width: 10.w),
-      suffixIcon: Icon(
-        Icons.keyboard_arrow_down,
-        color: Color(0xffA6A6A6),
-      ),
-      textInputAction: TextInputAction.next,
-      isRequired: false,
-    );
-  }
 
   Widget buildAddButtonWidgetState(BuildContext context) {
     return GetXStateWidget(
-      snapshotLiveData: controller.addTaskLiveData,
+      snapshotLiveData: controller.addTaskResponseLiveData,
       loadingWidget: LoadingWidget(),
       contentWidget: (data) {
         return buildAddButtonSubmit(context);
@@ -192,7 +203,6 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
       backgroundColor: BasicTools.getSectionColor(controller.group) ,
       textColor: Colors.white,
       title: LocaleKeys.add.tr,
-      // noMargin: false,
     ).onClickBounce(() {
       _onAddButtonSubmit(context);
     });
@@ -203,7 +213,7 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
     if (form!.validate()) {
       form.save();
       BasicTools.hideKeyboard(context);
-      // controller.postUpdateProfile();
+      controller.postTask();
     } else {}
   }
 

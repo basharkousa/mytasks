@@ -4,6 +4,8 @@ import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/sectionsresponse/sections_response.dart';
+import 'package:mytasks/src/data/models/tasksmodels/task_form_model.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
 
 import 'local/local_data_source.dart';
@@ -37,6 +39,21 @@ class Repository extends BaseApiResponse {
 
   Future<TasksResponse> getTasks({ProjectModel? project, SectionModel? section}) =>
       _remoteDataSource.getTasks(project:project,section:section);
+
+  Stream<ApiState<TaskModel>> postTask(TaskForm taskForm) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.postTask(taskForm));
+  }
+
+  Stream<ApiState<TaskModel>> updateTask({TaskForm? taskForm, var taskId}) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.updateTask(taskForm:taskForm,taskId:taskId));
+  }
+
+  Stream<ApiState> deleteTask(int taskId) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.deleteTask(taskId));
+  }
 
   /* --------------------------------SHARED_PREFERENCES METHODS------------------------------------- */
 

@@ -8,7 +8,7 @@ import 'package:shimmer/shimmer.dart';
 
 class GetXStateWidget<T> extends StatelessWidget {
   final Rx<ApiState<T>> snapshotLiveData;
-  final Widget Function(T)? contentWidget;
+  final Widget Function(T?)? contentWidget;
   final Widget? loadingWidget;
   final Widget? errorWidget;
   final Function? onRetryClicked;
@@ -40,7 +40,7 @@ class GetXStateWidget<T> extends StatelessWidget {
             //       child: Text(Strings.noResult.tr),
             //     ),
             //   );
-            return buildContent(snapshotLiveData.value.data!);
+            return buildContent(snapshotLiveData.value.data);
           // return buildLoading();
           case Status.ERROR:
             return buildError();
@@ -78,7 +78,7 @@ class GetXStateWidget<T> extends StatelessWidget {
         );
   }
 
-  Widget buildContent(T data) {
+  Widget buildContent(T? data) {
     return contentWidget != null
         ? contentWidget!(data)
         : Container(

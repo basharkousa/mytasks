@@ -38,16 +38,7 @@ class EditTaskScreen extends GetWidget<EditTaskController> {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     SizedBox(height: 16.h,),
-                    GetXStateWidget(
-                      snapshotLiveData: controller.projectsResponseLiveData,
-                      loadingWidget: buildLoadingProjectsWidget(),
-                      contentWidget: (data) {
-                        return buildProjectsWidget(data);
-                      },
-                      onRetryClicked: (){
-                        controller.getProjects();
-                      },
-                    ),
+
                     SizedBox(
                       height: 48.h,
                     ),
@@ -75,26 +66,5 @@ class EditTaskScreen extends GetWidget<EditTaskController> {
           );
         },
         itemCount: data.projects?.length ?? 0);
-  }
-
-  Widget buildLoadingProjectsWidget() {
-    return Shimmer.fromColors(
-      baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
-      highlightColor:
-      Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
-      child: ListView.separated(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return ItemProjectShimmer();
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 10.h,
-            );
-          },
-          itemCount: 4),
-    );
-
   }
 }

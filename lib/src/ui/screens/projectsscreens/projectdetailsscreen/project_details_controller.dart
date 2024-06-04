@@ -65,7 +65,7 @@ class ProjectDetailsController extends GetxController {
 
   @override
   void onInit() {
-    appFlowyController.enableGroupDragging(false);
+    // appFlowyController.enableGroupDragging(false);
     getSections();
 
     /* final group1 = AppFlowyGroupData(
@@ -132,28 +132,17 @@ class ProjectDetailsController extends GetxController {
       section.tasksResponseLiveData.value = ApiState.error(error.toString());
       print('OtherException:$error $stacktrace');
     }
-
-    /* repository.getTasks(project: project,section: section).listen((event){
-       section.tasksResponseLiveData.value = event;
-       switch(section.tasksResponseLiveData.value.status){
-         case Status.LOADING:
-           break;
-         case Status.COMPLETED:
-           section.tasksResponseLiveData.value.data?.tasks?.forEach((task){
-             taskItemFlowyList.add(TaskItemFlowy(task));
-           });
-           break;
-         case Status.ERROR:
-           break;
-       }
-    });*/
     return taskItemFlowyList;
   }
 
-  void goToAddTaskScreen(AppFlowyGroupData group, SectionsResponse data) {
+  void goToAddTaskScreen(AppFlowyGroupData group, SectionsResponse data) async{
     print(group.id + " " + group.headerData.groupId);
-    Get.toNamed(AddTaskScreen.route,
+    var addedTask = await Get.toNamed(AddTaskScreen.route,
         arguments: {"group": group, "projectId": project.id});
+    if(addedTask != null){
+      TaskModel taskModel = addedTask;
+      appFlowyController.addGroupItem(group.id, TaskItemFlowy(taskModel));
+    }
   }
 }
 

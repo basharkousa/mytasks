@@ -87,4 +87,8 @@ TaskForm copyWith({  String? content,
     return map;
   }
 
+  @override
+  String toString() {
+    return 'TaskForm{content: $content, description: $description, dueString: $dueString, dueLang: $dueLang, priority: $priority, projectId: $projectId, sectionId: $sectionId, dueDate: $dueDate, dueDatetime: $dueDatetime, duration: $duration, durationUnit: $durationUnit}';
+  }
 }

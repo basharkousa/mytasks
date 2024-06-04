@@ -405,11 +405,11 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
             errorText = "\u26A0 fieldrequired";
             return "\u0021 Required Field!!";
           }
-          if (value != null &&
-              value.contains(RegExp(r'[!@#%^&*();:_+>=.|,<]+'))) {
-            errorText = '* Please enter a valid text!!';
-            return '* Please enter a valid text!!';
-          }
+          // if (value != null &&
+          //     value.contains(RegExp(r'[!@#%^&*();:_+>=.|,<]+'))) {
+          //   errorText = '* Please enter a valid text!!';
+          //   return '* Please enter a valid text!!';
+          // }
         };
       case TextValidType.DATE:
         return (value) {

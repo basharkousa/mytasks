@@ -41,7 +41,7 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
                   snapshotLiveData: controller.projectsResponseLiveData,
                   loadingWidget: buildLoadingProjectsWidget(),
                   contentWidget: (data) {
-                    return buildProjectsWidget(data);
+                    return buildProjectsWidget(data!);
                   },
                   onRetryClicked: (){
                     controller.getProjects();
