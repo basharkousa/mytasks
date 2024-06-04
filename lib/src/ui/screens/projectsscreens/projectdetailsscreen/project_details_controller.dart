@@ -10,10 +10,10 @@ import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dar
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
 import 'package:mytasks/src/data/remote/exceptions/dio_error_util.dart';
 import 'package:mytasks/src/data/repository.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_screen.dart';
 
 // with SingleGetTickerProviderMixin
-class ProjectDetailsController extends GetxController{
-
+class ProjectDetailsController extends GetxController {
   final Repository repository = Get.find();
 
   ProjectModel project = Get.arguments;
@@ -21,6 +21,7 @@ class ProjectDetailsController extends GetxController{
   ProjectDetailsController();
 
   var sectionsResponseLiveData = ApiState<SectionsResponse>.loading().obs;
+
   getSections() async {
     sectionsResponseLiveData.value = ApiState.loading();
     try {
@@ -51,7 +52,6 @@ class ProjectDetailsController extends GetxController{
   }
 
   final AppFlowyBoardController appFlowyController = AppFlowyBoardController(
-
     onMoveGroup: (fromGroupId, fromIndex, toGroupId, toIndex) {
       // debugPrint('Move item from $fromIndex to $toIndex');
     },
@@ -62,7 +62,6 @@ class ProjectDetailsController extends GetxController{
       debugPrint('Move $fromGroupId:$fromIndex to $toGroupId:$toIndex');
     },
   );
-
 
   @override
   void onInit() {
@@ -96,34 +95,33 @@ class ProjectDetailsController extends GetxController{
     super.onClose();
   }
 
-  Future<void> onRefresh() async{
+  Future<void> onRefresh() async {}
 
-  }
-
-  void createSections(SectionsResponse? data) async{
-    for(SectionModel section in data?.sections??[]){
+  void createSections(SectionsResponse? data) async {
+    for (SectionModel section in data?.sections ?? []) {
       final group = AppFlowyGroupData(
           id: "${section.id}",
           name: "${section.name}",
-          items: List<AppFlowyGroupItem>.from(await getTasks(project,section)));
+          items:
+              List<AppFlowyGroupItem>.from(await getTasks(project, section)));
 
       appFlowyController.addGroup(group);
     }
 
     //to stop the Loading when the all the tasks are loaded!!
     sectionsResponseLiveData.value = ApiState.completed(data);
-
   }
 
-  getTasks(ProjectModel project, SectionModel section) async{
+  getTasks(ProjectModel project, SectionModel section) async {
     // List<TaskItemFlowy> taskItemFlowyList = [TaskItemFlowy("Card 1"),];
     List<TaskItemFlowy> taskItemFlowyList = [];
 
     section.tasksResponseLiveData.value = ApiState.loading();
     try {
-      TasksResponse tasksResponse = await repository.getTasks(project: project,section: section);
+      TasksResponse tasksResponse =
+          await repository.getTasks(project: project, section: section);
       section.tasksResponseLiveData.value = ApiState.completed(tasksResponse);
-      section.tasksResponseLiveData.value.data?.tasks?.forEach((task){
+      section.tasksResponseLiveData.value.data?.tasks?.forEach((task) {
         taskItemFlowyList.add(TaskItemFlowy(task));
       });
     } on DioException catch (error, stacktrace) {
@@ -134,7 +132,6 @@ class ProjectDetailsController extends GetxController{
       section.tasksResponseLiveData.value = ApiState.error(error.toString());
       print('OtherException:$error $stacktrace');
     }
-
 
     /* repository.getTasks(project: project,section: section).listen((event){
        section.tasksResponseLiveData.value = event;
@@ -152,10 +149,17 @@ class ProjectDetailsController extends GetxController{
     });*/
     return taskItemFlowyList;
   }
+
+  void goToAddTaskScreen(AppFlowyGroupData group, SectionsResponse data) {
+    print(group.id + " " + group.headerData.groupId);
+    Get.toNamed(AddTaskScreen.route,
+        arguments: {"group": group, "projectId": project.id});
+  }
 }
 
 class TaskItemFlowy extends AppFlowyGroupItem {
   final TaskModel taskModel;
+
   TaskItemFlowy(this.taskModel);
 
   @override

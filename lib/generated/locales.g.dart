@@ -10,6 +10,22 @@ class AppTranslation {
 }
 
 class LocaleKeys {
+  static var add_new = "NEW";
+
+  static var add_new_task_to= "Add task to";
+  static var section = "section";
+
+  static var enter_task_title = "Task Title";
+  static var task_title = "Task Title";
+  static var task_desc = "Task Description";
+  static var enter_task_desc = "Enter The Task Description";
+
+  static var task_due_date_title = "Due date";
+  static var task_due_date_desc = "Enter The Due date";
+
+  static var add = "Add";
+  static var update = "Update";
+
   LocaleKeys._();
   static const title = 'title';
   static const message = 'message';

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:mytasks/generated/assets.gen.dart';
+import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +8,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_controller.dart';
+import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
+import 'package:mytasks/src/ui/widgets/buttons/button_default.dart';
+import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
+import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
+import 'package:mytasks/src/ui/widgets/common/loading_widget.dart';
 import 'package:mytasks/src/ui/widgets/items/item_project.dart';
+import 'package:mytasks/src/utils/basic_tools.dart';
 import 'package:shimmer/shimmer.dart';
 
 class AddTaskScreen extends GetWidget<AddTaskController> {
@@ -22,79 +30,182 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
       top: false,
       bottom: false,
       child: Scaffold(
-        appBar: AppBarProjects(
-          title: "My Projects",
+        appBar: AppBarDefault(
+          title: "${LocaleKeys.add_new_task_to.tr} ${controller.group.headerData.groupName}",
         ),
         body: Container(
           margin: EdgeInsetsDirectional.only(
               start: Dimens.mainMargin, end: Dimens.mainMargin),
-          child: RefreshIndicator(
-            onRefresh: controller.onRefresh,
-            color: AppColors.lightAccent,
-            child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    SizedBox(height: 16.h,),
-                    GetXStateWidget(
-                      snapshotLiveData: controller.projectsResponseLiveData,
-                      loadingWidget: buildLoadingProjectsWidget(),
-                      contentWidget: (data) {
-                        return buildProjectsWidget(data);
-                      },
-                      onRetryClicked: (){
-                        controller.getProjects();
-                      },
-                    ),
-                    SizedBox(
-                      height: 48.h,
-                    ),
-                  ],
-                )),
-          ),
+          child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  SizedBox(height: 16.h,),
+                  buildAddTaskFormWidget(context),
+                  SizedBox(height: 16.h,),
+                  buildAddButtonWidgetState(context),
+                  SizedBox(
+                    height: 48.h,
+                  ),
+                ],
+              )),
         ),
-        // bottomNavigationBar: buildUpdateButton(context),
+        // bottomNavigationBar: buildAddButtonWidgetState(context),
       ),
     );
   }
 
-  Widget buildProjectsWidget(ProjectsResponse data) {
-    return ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return ItemProject(project: data.projects?[index],onClick: (project){
-            controller.goToProjectDetailsScreen(project);
-          },);
-        },
-        separatorBuilder: (context, index) {
-          return Container(
-            height: 10.h,
-          );
-        },
-        itemCount: data.projects?.length ?? 0);
-  }
+  buildAddTaskFormWidget(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 16.w),
+      child: Form(
+        key: controller.form,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 24.h),
+             buildTaskFieldTitle(context),
+            SizedBox(height: 24.h),
+            buildDueDateTextField(context),
+            SizedBox(height: 24.h),
+            buildTaskDescriptionTextField(context),
+/*            buildTextFieldCompanyActivity(context),
 
-  Widget buildLoadingProjectsWidget() {
-    return Shimmer.fromColors(
-      baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
-      highlightColor:
-      Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
-      child: ListView.separated(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return ItemProjectShimmer();
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 10.h,
-            );
-          },
-          itemCount: 4),
+            SizedBox(height: 18.h),
+            buildTextFieldResponsibleName(context),
+
+            SizedBox(height: 18.h),
+            buildTextFieldJobTitle(context),
+
+            SizedBox(height: 18.h),
+            buildTextFieldCommercialRegistrationNo(context),*/
+
+
+            SizedBox(height: 24.h),
+
+          ],
+        ),
+      ),
     );
-
   }
+
+
+  Widget buildTaskFieldTitle(BuildContext context) {
+    return DefaultTextField(
+      // controller: controller.phoneNumberController,
+      // validator: (value) => check(value),
+      textValidType: TextValidType.GENERAL,
+      onSaved: (value) => controller.taskForm.content = value.toString(),
+      // initialValue: controller.user.value.email,
+      onFieldSubmitted: (_) {
+        // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
+      },
+      // initialValue: controller.user.value.password,
+      // focusNode: controller.phoneFocusNode,
+      hintText: LocaleKeys.enter_task_title.tr,
+      enabled: true,
+      title: LocaleKeys.task_title.tr,
+      // isObscure: true,
+      prefixIcon: Assets.icons.svg.icMessageTitle
+          .svg(height: 10.h, width: 10.w, color: const Color(0xffA6A6A6)),
+      // suffixIcon: Icon(
+      //   Icons.keyboard_arrow_down,
+      //   color: Color(0xffA6A6A6),
+      // ),
+      textInputAction: TextInputAction.next,
+      isRequired: true,
+    );
+  }
+  Widget buildTaskDescriptionTextField(BuildContext context) {
+    return DefaultTextField(
+      // controller: controller.carDescriptionEditingController,
+      textValidType: TextValidType.GENERAL,
+      keyboardType: TextInputType.multiline,
+      maxLines: 6,
+      contentPadding:
+      EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 16.0.h),
+      onSaved: (value) =>
+      controller.taskForm.description = value.toString(),
+      // initialValue: controller.user.value.email,
+      onFieldSubmitted: (_) {
+        // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
+      },
+      // initialValue: controller.user.value.password,
+      focusNode: controller.descriptionFocusNode,
+      onTapOutside: (pointerDownEvent) {
+        print("onTapOutside");
+        controller.descriptionFocusNode.unfocus();
+      },
+      hintText: LocaleKeys.enter_task_desc.tr,
+      enabled: true,
+      title: LocaleKeys.task_desc.tr,
+      // isObscure: true,
+      prefixIcon: Assets.icons.svg.icMessageDescription
+          .svg(height: 10.h, width: 10.w, color: Color(0xffA6A6A6)),
+      textInputAction: TextInputAction.next,
+      isRequired: true,
+    );
+  }
+  Widget buildDueDateTextField(BuildContext context) {
+    return DefaultTextField(
+      // controller: controller.brandEditingController,
+      textValidType: TextValidType.NONE,
+      // onSaved: (value) => controller.user.fkCityId = int.parse(value!),
+      // initialValue: controller.user.value.email,
+      onFieldSubmitted: (_) {
+        // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
+      },
+      // initialValue: controller.user.value.password,
+      onTap: () {
+
+      },
+      // focusNode: controller.phoneFocusNode,
+      hintText: LocaleKeys.task_due_date_desc.tr,
+      enabled: true,
+      readOnly: true,
+      title: LocaleKeys.task_due_date_title.tr,
+      // isObscure: true,
+      prefixIcon: Assets.icons.svg.icCalendar.svg(height: 10.h, width: 10.w),
+      suffixIcon: Icon(
+        Icons.keyboard_arrow_down,
+        color: Color(0xffA6A6A6),
+      ),
+      textInputAction: TextInputAction.next,
+      isRequired: false,
+    );
+  }
+
+  Widget buildAddButtonWidgetState(BuildContext context) {
+    return GetXStateWidget(
+      snapshotLiveData: controller.addTaskLiveData,
+      loadingWidget: LoadingWidget(),
+      contentWidget: (data) {
+        return buildAddButtonSubmit(context);
+      },
+      errorWidget: buildAddButtonSubmit(context),
+    );
+  }
+
+  Widget buildAddButtonSubmit(BuildContext context) {
+    return ButtonDefault(
+      backgroundColor: BasicTools.getSectionColor(controller.group) ,
+      textColor: Colors.white,
+      title: LocaleKeys.add.tr,
+      // noMargin: false,
+    ).onClickBounce(() {
+      _onAddButtonSubmit(context);
+    });
+  }
+
+  void _onAddButtonSubmit(BuildContext context) {
+    final form = controller.form.currentState;
+    if (form!.validate()) {
+      form.save();
+      BasicTools.hideKeyboard(context);
+      // controller.postUpdateProfile();
+    } else {}
+  }
+
+
 }

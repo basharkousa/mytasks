@@ -58,8 +58,12 @@ class $AssetsIconsGifGen {
   AssetGenImage get icLoader =>
       const AssetGenImage('assets/icons/gif/ic_loader.gif');
 
+  /// File path: assets/icons/gif/ic_loading.gif
+  AssetGenImage get icLoading =>
+      const AssetGenImage('assets/icons/gif/ic_loading.gif');
+
   /// List of all assets
-  List<AssetGenImage> get values => [icLoader];
+  List<AssetGenImage> get values => [icLoader, icLoading];
 }
 
 class $AssetsIconsPngGen {
@@ -80,6 +84,10 @@ class $AssetsIconsPngGen {
 class $AssetsIconsSvgGen {
   const $AssetsIconsSvgGen();
 
+  /// File path: assets/icons/svg/ic_calendar.svg
+  SvgGenImage get icCalendar =>
+      const SvgGenImage('assets/icons/svg/ic_calendar.svg');
+
   /// File path: assets/icons/svg/ic_checkbox_internet.svg
   SvgGenImage get icCheckboxInternet =>
       const SvgGenImage('assets/icons/svg/ic_checkbox_internet.svg');
@@ -87,6 +95,14 @@ class $AssetsIconsSvgGen {
   /// File path: assets/icons/svg/ic_close_expantion.svg
   SvgGenImage get icCloseExpantion =>
       const SvgGenImage('assets/icons/svg/ic_close_expantion.svg');
+
+  /// File path: assets/icons/svg/ic_message_description.svg
+  SvgGenImage get icMessageDescription =>
+      const SvgGenImage('assets/icons/svg/ic_message_description.svg');
+
+  /// File path: assets/icons/svg/ic_message_title.svg
+  SvgGenImage get icMessageTitle =>
+      const SvgGenImage('assets/icons/svg/ic_message_title.svg');
 
   /// File path: assets/icons/svg/ic_no_connection.svg
   SvgGenImage get icNoConnection =>
@@ -102,8 +118,11 @@ class $AssetsIconsSvgGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        icCalendar,
         icCheckboxInternet,
         icCloseExpantion,
+        icMessageDescription,
+        icMessageTitle,
         icNoConnection,
         icOpenExpantion,
         icSwipeDownArrow
@@ -138,16 +157,8 @@ class $AssetsImagesSvgGen {
   /// File path: assets/images/svg/iv_logo.svg
   SvgGenImage get ivLogo => const SvgGenImage('assets/images/svg/iv_logo.svg');
 
-  /// File path: assets/images/svg/iv_splash_dark.svg
-  SvgGenImage get ivSplashDark =>
-      const SvgGenImage('assets/images/svg/iv_splash_dark.svg');
-
-  /// File path: assets/images/svg/iv_splash_light.svg
-  SvgGenImage get ivSplashLight =>
-      const SvgGenImage('assets/images/svg/iv_splash_light.svg');
-
   /// List of all assets
-  List<SvgGenImage> get values => [ivLogo, ivSplashDark, ivSplashLight];
+  List<SvgGenImage> get values => [ivLogo];
 }
 
 class Assets {

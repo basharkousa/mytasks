@@ -1,6 +1,7 @@
 import 'package:appflowy_board/appflowy_board.dart';
 import 'package:get/get.dart';
 import 'package:marquee_widget/marquee_widget.dart';
+import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/proj
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
+import 'package:mytasks/src/utils/basic_tools.dart';
 
 class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
   static const String route = "/ProjectDetailsScreen";
@@ -61,7 +63,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              child: Text(group.headerData.groupName,style: TextStyle(color: getSectionColor(group),fontWeight: FontWeight.w700),),),
+              child: Text(group.headerData.groupName,style: TextStyle(color: BasicTools.getSectionColor(group),fontWeight: FontWeight.w700),),),
           );
         },
         footerBuilder: (context, group){
@@ -73,13 +75,13 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
                 Row(children: [
                   Icon(Icons.add,size: 16.h,),
                   SizedBox(width: 10.w,),
-                  Text("NEW")
+                  Text(LocaleKeys.add_new.tr)
                 ],),
                 SizedBox(height: 16.h,)
               ],
             ),
           ),).onClickBounce((){
-
+              controller.goToAddTaskScreen(group,data);
           });
         },
         cardBuilder: (context, group, groupItem) {
@@ -90,7 +92,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
                 width: Get.width/2,
                 padding: EdgeInsets.only(left:4.w),
                 decoration: ShapeDecoration(
-                  color: getSectionColor(group),
+                  color: BasicTools.getSectionColor(group),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1.w, color: Color(0x99E6E6E6)),
                     borderRadius: BorderRadius.circular(8.r),
@@ -140,18 +142,6 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
     );
   }
 
-  getSectionColor(AppFlowyGroupData<dynamic> group) {
-    switch(group.headerData.groupName){
-      case "Todo":
-        return Colors.blue;
-      case "InProgress":
-        return Colors.amberAccent;
-      case "Completed":
-        return Colors.green;
-      default:
-        return Colors.black;
-    }
-  }
 
 
 }

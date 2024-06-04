@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:appflowy_board/appflowy_board.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -66,6 +67,19 @@ class BasicTools {
   //     fontSize: 16.0,
   //   );
   // }
+
+  static getSectionColor(AppFlowyGroupData<dynamic> group) {
+    switch(group.headerData.groupName){
+      case "Todo":
+        return Colors.blue;
+      case "InProgress":
+        return Colors.amberAccent;
+      case "Completed":
+        return Colors.green;
+      default:
+        return Colors.black;
+    }
+  }
 
   static void showToastMessage(String? msg, {ToastGravity? gravity}
       //     {SnackPosition? gravity}
