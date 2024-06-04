@@ -132,7 +132,7 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
             lastDate: DateTime(2100));
         if (datePick != null) {
           controller.taskForm.dueDate =
-          "${datePick.year}-${datePick.month}-${datePick.day}";
+          "${datePick.year}-${datePick.month < 10?0:""}${datePick.month}-${datePick.month < 10?0:""}${datePick.day}";
           print("selectedDate: ${"${datePick.year}-${datePick.month}-${datePick.day}"}");
           // isDateSelected=true;
           // put it here

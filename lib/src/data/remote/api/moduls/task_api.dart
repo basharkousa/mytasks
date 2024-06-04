@@ -41,7 +41,7 @@ class TaskApi {
       // "due_string": "tomorrow at 12:00",
       "due_lang": "en",
       // "priority": taskForm.priority,
-      // "due_date": taskForm.dueDate, // "YYYY-MM-DD"
+      "due_date": taskForm.dueDate, // "YYYY-MM-DD"
       // "due_datetime": ""
       //Specific date and time in RFC3339 format in UTC.
       //Please note that only one of the due_* fields can be used at the same time (due_lang is a special case).
