@@ -38,6 +38,7 @@ class TaskApi {
       "section_id": taskForm.sectionId,
       "content": taskForm.content,
       "description": taskForm.description,
+      // "order":1,
       // "due_string": "tomorrow at 12:00",
       "due_lang": "en",
       // "priority": taskForm.priority,
@@ -64,12 +65,11 @@ class TaskApi {
       "description": taskForm?.description,
       // "due_string": "tomorrow at 12:00",
       "due_lang": "en",
-      "priority": taskForm?.priority,
+      // "priority": taskForm?.priority,
       "due_date": taskForm?.dueDate, // "YYYY-MM-DD"
       // "due_datetime": ""
       //Specific date and time in RFC3339 format in UTC.
       //Please note that only one of the due_* fields can be used at the same time (due_lang is a special case).
-
       // "duration": taskForm?.duration,
       //A positive (greater than zero) integer for the amount of duration_unit the task will take. If specified, you must define a duration_unit.
       // "duration_unit": taskForm?.durationUnit
@@ -81,11 +81,9 @@ class TaskApi {
     return TaskModel.fromJson(res);
   }
 
-  Future deleteTaskRequest(int taskId) async {
+  Future<String> deleteTaskRequest(var taskId) async {
     final res = await _dioClient.delete("${Endpoints.tasks}/${taskId??""}");
-    return TaskModel.fromJson(res);
+    return res;
   }
-
-
 
 }

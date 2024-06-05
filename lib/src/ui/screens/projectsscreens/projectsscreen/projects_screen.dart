@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
       bottom: false,
       child: Scaffold(
         appBar: AppBarProjects(
-          title: "My Projects",
+          title: LocaleKeys.add_new_task_to.tr,
         ),
         body: Container(
           margin: EdgeInsetsDirectional.only(

@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:mytasks/src/data/models/api_state.dart';
+
 import 'due_model.dart';
 
 /// id : "8049021220"
@@ -78,7 +81,10 @@ class TaskModel {
   DueModel? due;
   String? url;
   dynamic duration;
-TaskModel copyWith({  String? id,
+  var deleteTaskLiveData = ApiState.completed('').obs;
+
+
+  TaskModel copyWith({  String? id,
   dynamic assignerId,
   dynamic assigneeId,
   String? projectId,

@@ -74,7 +74,9 @@ dependencies:
   flutter_screenutil: ^5.9.0
   flutter_launcher_icons: ^0.13.1
   spring_button: ^2.0.0
+  timeago: ^3.2.2
   appflowy_board: ^0.1.0
+
 
 
 dev_dependencies:

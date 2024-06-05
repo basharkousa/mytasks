@@ -31,8 +31,6 @@ class AddTaskController extends GetxController{
 
   TaskForm taskForm = TaskForm();
 
-
-
   @override
   void onInit() {
 
@@ -61,7 +59,6 @@ class AddTaskController extends GetxController{
     repository.postTask(taskForm).listen((event){
       addTaskResponseLiveData.value = event;
       switch(addTaskResponseLiveData.value.status){
-
         case Status.LOADING:
           break;
         case Status.COMPLETED:

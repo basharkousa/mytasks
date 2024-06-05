@@ -11,6 +11,8 @@ import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response
 import 'package:mytasks/src/data/remote/exceptions/dio_error_util.dart';
 import 'package:mytasks/src/data/repository.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_screen.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_screen.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_screen.dart';
 
 // with SingleGetTickerProviderMixin
 class ProjectDetailsController extends GetxController {
@@ -27,7 +29,7 @@ class ProjectDetailsController extends GetxController {
     try {
       SectionsResponse sectionsResponse = await repository.getSections(project);
       createSections(sectionsResponse);
-      // sectionsResponseLiveData.value = ApiState.completed(sectionsResponse);
+      sectionsResponseLiveData.value = ApiState.completed(sectionsResponse);
     } on DioException catch (error, stacktrace) {
       sectionsResponseLiveData.value =
           ApiState.error(DioErrorUtil.handleError(error));
@@ -36,19 +38,6 @@ class ProjectDetailsController extends GetxController {
       sectionsResponseLiveData.value = ApiState.error(error.toString());
       print('OtherException:$error $stacktrace');
     }
-
-    // repository.getSections(project).listen((event) {
-    //   sectionsResponseLiveData.value = event;
-    //   switch(sectionsResponseLiveData.value.status){
-    //     case Status.LOADING:
-    //       break;
-    //     case Status.COMPLETED:
-    //
-    //       break;
-    //     case Status.ERROR:
-    //       break;
-    //   }
-    // });
   }
 
   final AppFlowyBoardController appFlowyController = AppFlowyBoardController(
@@ -67,26 +56,6 @@ class ProjectDetailsController extends GetxController {
   void onInit() {
     // appFlowyController.enableGroupDragging(false);
     getSections();
-
-    /* final group1 = AppFlowyGroupData(
-        id: "ToDo",
-        name: "To Do",
-        items: [
-      TaskItemFlowy("Card 1"),
-      TaskItemFlowy("Card 2"),
-    ]);
-    final group2 = AppFlowyGroupData(id: "InProgress", name: "In Progress",
-        items: [
-      TaskItemFlowy("Card 3"),
-      TaskItemFlowy("Card 4"),
-
-    ]);
-    final group3 = AppFlowyGroupData(id: "Done",name: "Done",
-        items: []);
-
-    appFlowyController.addGroup(group1);
-    appFlowyController.addGroup(group2);
-    appFlowyController.addGroup(group3);*/
     super.onInit();
   }
 
@@ -109,7 +78,7 @@ class ProjectDetailsController extends GetxController {
     }
 
     //to stop the Loading when the all the tasks are loaded!!
-    sectionsResponseLiveData.value = ApiState.completed(data);
+    // sectionsResponseLiveData.value = ApiState.completed(data);
   }
 
   getTasks(ProjectModel project, SectionModel section) async {
@@ -121,7 +90,7 @@ class ProjectDetailsController extends GetxController {
       TasksResponse tasksResponse =
           await repository.getTasks(project: project, section: section);
       section.tasksResponseLiveData.value = ApiState.completed(tasksResponse);
-      section.tasksResponseLiveData.value.data?.tasks?.forEach((task) {
+      section.tasksResponseLiveData.value.data?.tasks?.reversed.forEach((task) {
         taskItemFlowyList.add(TaskItemFlowy(task));
       });
     } on DioException catch (error, stacktrace) {
@@ -135,14 +104,44 @@ class ProjectDetailsController extends GetxController {
     return taskItemFlowyList;
   }
 
+
+
   void goToAddTaskScreen(AppFlowyGroupData group, SectionsResponse data) async{
     print(group.id + " " + group.headerData.groupId);
     var addedTask = await Get.toNamed(AddTaskScreen.route,
         arguments: {"group": group, "projectId": project.id});
     if(addedTask != null){
       TaskModel taskModel = addedTask;
-      appFlowyController.addGroupItem(group.id, TaskItemFlowy(taskModel));
+      appFlowyController.insertGroupItem(group.id, 0,TaskItemFlowy(taskModel));
     }
+  }
+
+  void goToEditTaskScreen(TaskItemFlowy taskItemFlowy)async {
+     var addedTask = await Get.toNamed(EditTaskScreen.route,arguments: taskItemFlowy.taskModel);
+     if(addedTask != null){
+       TaskModel taskModel = addedTask;
+       appFlowyController.updateGroupItem(taskItemFlowy.taskModel.sectionId.toString(), TaskItemFlowy(taskModel));
+     }
+  }
+
+  void deleteTask(TaskItemFlowy taskItemFlowy, AppFlowyGroupData group) {
+    repository.deleteTask(taskItemFlowy.taskModel.id).listen((event){
+      taskItemFlowy.taskModel.deleteTaskLiveData.value = event;
+      print("event ${event.status}");
+      switch(event.status){
+        case Status.LOADING:
+          break;
+        case Status.COMPLETED:
+          appFlowyController.removeGroupItem(group.id, taskItemFlowy.taskModel.id!);
+          break;
+        case Status.ERROR:
+          break;
+      }
+    });
+  }
+
+  void goToCommentsScreen(TaskItemFlowy taskItemFlowy) {
+    Get.toNamed(CommentsScreen.route, arguments: taskItemFlowy.taskModel);
   }
 }
 

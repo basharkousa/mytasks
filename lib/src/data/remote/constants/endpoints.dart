@@ -1,5 +1,6 @@
 class Endpoints {
 
+
   Endpoints._();
 
   // production
@@ -7,9 +8,10 @@ class Endpoints {
   static String? signUp = "sign-up";
   static String? logIn = "login";
 
-  static String projects = "projects";
-  static String sections = "sections";
-  static String tasks = "tasks";
+  static const String projects = "projects";
+  static const String sections = "sections";
+  static const String tasks = "tasks";
+  static const String comments = 'comments';
 
   // receiveTimeout
   static const int receiveTimeout = 90000;

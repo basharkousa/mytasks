@@ -96,6 +96,10 @@ class $AssetsIconsSvgGen {
   SvgGenImage get icCloseExpantion =>
       const SvgGenImage('assets/icons/svg/ic_close_expantion.svg');
 
+  /// File path: assets/icons/svg/ic_default_person.svg
+  SvgGenImage get icDefaultPerson =>
+      const SvgGenImage('assets/icons/svg/ic_default_person.svg');
+
   /// File path: assets/icons/svg/ic_message_description.svg
   SvgGenImage get icMessageDescription =>
       const SvgGenImage('assets/icons/svg/ic_message_description.svg');
@@ -121,6 +125,7 @@ class $AssetsIconsSvgGen {
         icCalendar,
         icCheckboxInternet,
         icCloseExpantion,
+        icDefaultPerson,
         icMessageDescription,
         icMessageTitle,
         icNoConnection,

@@ -1,13 +1,18 @@
 import 'package:get/get.dart';
+import 'package:mytasks/generated/assets.gen.dart';
+import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
+import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
+import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
+import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
-import 'package:mytasks/src/ui/widgets/items/item_project.dart';
+import 'package:mytasks/src/ui/widgets/items/item_comment.dart';
+import 'package:mytasks/src/utils/basic_tools.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CommentsScreen extends GetWidget<CommentsController> {
@@ -22,50 +27,64 @@ class CommentsScreen extends GetWidget<CommentsController> {
       bottom: false,
       child: Scaffold(
         appBar: AppBarProjects(
-          title: "My Projects",
+          title: LocaleKeys.comments,
         ),
-        body: Container(
-          margin: EdgeInsetsDirectional.only(
-              start: Dimens.mainMargin, end: Dimens.mainMargin),
-          child: RefreshIndicator(
-            onRefresh: controller.onRefresh,
-            color: AppColors.lightAccent,
-            child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    SizedBox(height: 16.h,),
-                    GetXStateWidget(
-                      snapshotLiveData: controller.projectsResponseLiveData,
-                      loadingWidget: buildLoadingProjectsWidget(),
-                      contentWidget: (data) {
-                        return buildProjectsWidget(data!);
-                      },
-                      onRetryClicked: (){
-                        controller.getProjects();
-                      },
-                    ),
-                    SizedBox(
-                      height: 48.h,
-                    ),
-                  ],
-                )),
-          ),
-        ),
-        // bottomNavigationBar: buildUpdateButton(context),
+        body: Column(children: [
+          Expanded(child:Container(
+            margin: EdgeInsetsDirectional.only(
+                start: Dimens.mainMargin, end: Dimens.mainMargin),
+            child: RefreshIndicator(
+              onRefresh: controller.onRefresh,
+              color: AppColors.lightAccent,
+              child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      SizedBox(height: 16.h,),
+                      GetXStateWidget(
+                        snapshotLiveData: controller.commentsResponseLiveData,
+                        loadingWidget: buildLoadingCommentsWidget(),
+                        contentWidget: (data) {
+                          return buildCommentsWidget(data!);
+                        },
+                        onRetryClicked: (){
+                          controller.getComments();
+                        },
+                      ),
+                      SizedBox(
+                        height: 48.h,
+                      ),
+
+                    ],
+                  )),
+            ),
+          )),
+          buildAddCommentBarWidget(context)
+        ],),
       ),
     );
   }
 
-  Widget buildProjectsWidget(ProjectsResponse data) {
+  Widget buildCommentsWidget(CommentsResponse data) {
+    if(data.comments?.isEmpty??true){
+      return Container(
+          height: Get.width,
+          child: Container(
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 0.50.w, color: Color(0x99E6E6E6)),
+                  borderRadius: BorderRadius.circular(16.r),
+                ),),
+              child: Center(child: Text(LocaleKeys.no_comments.tr),)));
+    }
     return ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ItemProject(project: data.projects?[index],onClick: (project){
-            controller.goToProjectDetailsScreen(project);
+          return ItemComment(comment: data.comments?[index],onClick: (comment){
           },);
         },
         separatorBuilder: (context, index) {
@@ -73,10 +92,10 @@ class CommentsScreen extends GetWidget<CommentsController> {
             height: 10.h,
           );
         },
-        itemCount: data.projects?.length ?? 0);
+        itemCount: data.comments?.length ?? 0);
   }
 
-  Widget buildLoadingProjectsWidget() {
+  Widget buildLoadingCommentsWidget() {
     return Shimmer.fromColors(
       baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
       highlightColor:
@@ -85,7 +104,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return ItemProjectShimmer();
+            return ItemCommentShimmer();
           },
           separatorBuilder: (context, index) {
             return Container(
@@ -95,5 +114,58 @@ class CommentsScreen extends GetWidget<CommentsController> {
           itemCount: 4),
     );
 
+  }
+
+  Widget buildCommentFieldTitle(BuildContext context) {
+    return Form(
+      key: controller.form,
+      child: Container(
+        padding: EdgeInsetsDirectional.only(start: Dimens.mainMargin,end: Dimens.mainMargin,bottom: Dimens.mainMargin),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+          Expanded(child: DefaultTextField(
+            controller: controller.taskCommentEditingController,
+            textValidType: TextValidType.GENERAL,
+            onSaved: (value) => controller.commentForm.content = value.toString(),
+            // initialValue: controller.user.value.email,
+            onFieldSubmitted: (_) {
+              // FocusScope.of(context).requestFocus(controller.phoneFocusNode);
+            },
+            hintText: LocaleKeys.add_comment.tr,
+            enabled: true,
+            title: "",
+            // isObscure: true,
+            prefixIcon: Assets.icons.svg.icMessageTitle
+                .svg(height: 10.h, width: 10.w, color: const Color(0xffA6A6A6)),
+            suffixIcon: InkWell(
+              onTap: (){
+                _onAddCommentSubmit(context);
+              },
+              child: Icon(
+                Icons.send,
+                color: AppColors.lightAccent,
+              ),
+            ),
+            textInputAction: TextInputAction.next,
+            isRequired: false,
+          )),
+        ],),
+      ),
+    );
+  }
+
+  buildAddCommentBarWidget(BuildContext context) {
+    return buildCommentFieldTitle(context);
+  }
+
+
+  void _onAddCommentSubmit(BuildContext context) {
+    final form = controller.form.currentState;
+    if (form!.validate()) {
+      form.save();
+      BasicTools.hideKeyboard(context);
+      controller.postComment();
+    } else {}
   }
 }

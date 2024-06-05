@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http_formatter/dio_http_formatter.dart';
 import 'package:get/get.dart';
+import 'package:mytasks/src/data/remote/api/moduls/comment_api.dart';
 import 'package:mytasks/src/data/remote/api/moduls/section_api.dart';
 import 'package:mytasks/src/data/remote/api/moduls/task_api.dart';
 import '../../../data/remote/api/clients/dio_client.dart';
@@ -92,12 +93,17 @@ class RemoteBindings extends Bindings {
       return TaskApi(Get.find(),Get.find());
     },fenix: true);
 
+    Get.lazyPut<CommentApi>(() {
+      return CommentApi(Get.find(),Get.find());
+    },fenix: true);
+
     Get.lazyPut<RemoteDataSource>(() {
       return RemoteDataSource(
           Get.find<AppApi>(),
           Get.find<AuthApi>(),
           Get.find<SectionApi>(),
           Get.find<TaskApi>(),
+          Get.find<CommentApi>(),
           );
     }, fenix: true);
 

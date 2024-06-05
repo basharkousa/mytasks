@@ -1,23 +1,17 @@
 import 'package:get/get.dart';
 import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
-import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
-import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
-import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/buttons/button_default.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/loading_widget.dart';
-import 'package:mytasks/src/ui/widgets/items/item_project.dart';
 import 'package:mytasks/src/utils/basic_tools.dart';
-import 'package:shimmer/shimmer.dart';
 
 class AddTaskScreen extends GetWidget<AddTaskController> {
   static const String route = "/AddTaskScreen";
@@ -132,7 +126,7 @@ class AddTaskScreen extends GetWidget<AddTaskController> {
             lastDate: DateTime(2100));
         if (datePick != null) {
           controller.taskForm.dueDate =
-          "${datePick.year}-${datePick.month < 10?0:""}${datePick.month}-${datePick.month < 10?0:""}${datePick.day}";
+          "${datePick.year}-${datePick.month < 10?0:""}${datePick.month}-${datePick.day < 10?0:""}${datePick.day}";
           print("selectedDate: ${"${datePick.year}-${datePick.month}-${datePick.day}"}");
           // isDateSelected=true;
           // put it here

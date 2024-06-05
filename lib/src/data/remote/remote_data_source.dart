@@ -1,3 +1,5 @@
+import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comment_model.dart';
+import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
@@ -5,6 +7,7 @@ import 'package:mytasks/src/data/models/sectionsmodels/sectionsresponse/sections
 import 'package:mytasks/src/data/models/tasksmodels/task_form_model.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/tasks_response.dart';
+import 'package:mytasks/src/data/remote/api/moduls/comment_api.dart';
 import 'package:mytasks/src/data/remote/api/moduls/section_api.dart';
 import 'package:mytasks/src/data/remote/api/moduls/task_api.dart';
 
@@ -20,12 +23,14 @@ class RemoteDataSource {
   final AuthApi _authApi;
   final SectionApi _sectionApi;
   final TaskApi _taskApi;
+  final CommentApi _commentApi;
 
   RemoteDataSource(
       this._appApi,
       this._authApi,
       this._sectionApi,
-      this._taskApi
+      this._taskApi,
+      this._commentApi
 );
 
   Future<ProjectsResponse> getProjects() => _appApi.getProjectsRequest();
@@ -39,12 +44,18 @@ class RemoteDataSource {
   Future<TaskModel> postTask(
       TaskForm taskForm) => _taskApi.postTaskRequest(taskForm);
 
+
   Future<TaskModel> updateTask(
       {TaskForm? taskForm, var taskId}) => _taskApi.updateTaskRequest(taskForm:taskForm,taskId:taskId);
 
+  Future<String> deleteTask(
+      var taskId) => _taskApi.deleteTaskRequest(taskId);
 
-  Future deleteTask(
-      int taskId) => _taskApi.deleteTaskRequest(taskId);
+  Future<CommentsResponse> getComments(
+      task) => _commentApi.getCommentsRequest(task);
+
+  Future<CommentModel> postComment(
+      CommentModel comment) => _commentApi.postCommentRequest(comment);
 
 
   Future<SignUpResponse> doSignUp(User user) => _authApi.signUpRequest(user);

@@ -12,7 +12,9 @@ class AppTranslation {
 class LocaleKeys {
   static var add_new = "NEW";
 
+
   static var add_new_task_to= "Add task to";
+  static var my_projects = "My Projects";
   static var section = "section";
 
   static var enter_task_title = "Task Title";
@@ -25,6 +27,11 @@ class LocaleKeys {
 
   static var add = "Add";
   static var update = "Update";
+  static var edit = "Edit";
+  static var delete = "Delete";
+  static var comments = "Comments";
+  static String no_comments = "No Comments";
+  static String add_comment = "Add Comment";
 
   LocaleKeys._();
   static const title = 'title';

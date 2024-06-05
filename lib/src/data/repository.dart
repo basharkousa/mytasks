@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
+import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comment_model.dart';
+import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
@@ -50,10 +53,22 @@ class Repository extends BaseApiResponse {
     yield await safeApiCall(() => _remoteDataSource.updateTask(taskForm:taskForm,taskId:taskId));
   }
 
-  Stream<ApiState> deleteTask(int taskId) async * {
+  Stream<ApiState<String>> deleteTask(var taskId) async * {
     yield ApiState.loading();
     yield await safeApiCall(() => _remoteDataSource.deleteTask(taskId));
   }
+
+  Stream<ApiState<CommentsResponse>> getComments(TaskModel task) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.getComments(task));
+  }
+
+  Stream<ApiState<CommentModel>> postComment(CommentModel comment) async * {
+    yield ApiState.loading();
+    yield await safeApiCall(() => _remoteDataSource.postComment(comment));
+  }
+
+
 
   /* --------------------------------SHARED_PREFERENCES METHODS------------------------------------- */
 
