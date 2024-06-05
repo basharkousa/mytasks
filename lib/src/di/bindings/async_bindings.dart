@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'package:mytasks/src/data/local/datasources/database/constants/db_constants.dart';
+import 'package:sqflite/sqflite.dart';
 import '../../data/local/datasources/sharedpref/shared_preference_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class AsyncBindings extends Bindings {
 
@@ -10,7 +11,35 @@ class AsyncBindings extends Bindings {
   @override
   Future dependencies() async{
 
-   await Get.putAsync<SharedPreferences>(() async {
+    await Get.putAsync<Database>(() async {
+      var databasesPath = await getDatabasesPath();
+      //
+      String path = '$databasesPath/${DBConstants.DB_NAME}';
+      // Delete the database
+      // await deleteDatabase(path);
+      Database database = await openDatabase(path, version: 1,
+          onCreate: (Database db, int version) async {
+            // When creating the db, create the table
+            await db.execute('''
+        CREATE TABLE ${DBConstants.TASK_HISTORY} (
+          ${DBConstants.ID} TEXT PRIMARY KEY,
+          ${DBConstants.PROJECT_ID} TEXT,
+          ${DBConstants.SECTION_ID} TEXT,
+          ${DBConstants.CONTENT} TEXT,
+          ${DBConstants.DESCRIPTIN} TEXT,
+          ${DBConstants.IS_COMPLETED} INTEGER,
+          ${DBConstants.PRIORITY} INTEGER,
+          ${DBConstants.CREATED_AT} TEXT,
+          ${DBConstants.SPENT_TIME} TEXT
+        )
+      ''');
+          });
+
+      return database;
+    }, permanent: true); // Yes, we do get tag and permanent properties with this as well
+
+
+    await Get.putAsync<SharedPreferences>(() async {
       // final prefs = await SharedPreferences.getInstance();
       // await prefs.setString('name', 'Batman');
       return await SharedPreferences.getInstance();

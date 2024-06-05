@@ -1,3 +1,5 @@
+import 'package:mytasks/src/data/local/datasources/database/constants/db_constants.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -23,21 +25,21 @@ class DatabaseHelper {
 
 //  // DB functions:--------------------------------------------------------------
 
-  Future<int> createCourse(var course) async{
-    //db.rawInsert('insert into courses value')
-    return _db.insert('courses', course.toMap());
+  Future<void> addTaskHistoryQuery(TaskModel task) async {
+    await _db.insert(DBConstants.TASK_HISTORY, task.toMapDatabase());
   }
-  Future<List> allCourses() async{
 
-    //db.rawQuery('select * from courses');
-    return _db.query('courses');
+  Future<List<TaskModel>> getTaskHistoryItemsQuery() async {
+    final maps = await _db.query(DBConstants.TASK_HISTORY);
+    return List.generate(maps.length, (i) => TaskModel.fromMapDataBase(maps[i]));
   }
-  Future<int> delete(int id) async{
-    return _db.delete('courses', where: 'id = ?', whereArgs: [id]);
+
+ /* Future<int> delete(int id) async{
+    return _db.delete('example', where: 'id = ?', whereArgs: [id]);
   }
-  Future<int> courseUpdate(var course) async{
-    return await _db.update('courses', course.toMap(),where: 'id = ?', whereArgs: [course.id]);
-  }
+  Future<int> exampleUpdate(var course) async{
+    return await _db.update('example', course.toMap(),where: 'id = ?', whereArgs: [example.id]);
+  }*/
 
 
 }

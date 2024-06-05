@@ -1,12 +1,30 @@
 class DBConstants {
+  static var ID = 'id';
+
+  static var PROJECT_ID = 'project_id';
+
+  static var SECTION_ID = 'section_id';
+
+  static var CONTENT = 'content';
+
+  static var DESCRIPTIN = 'description';
+
+  static var IS_COMPLETED = 'is_completed';
+
+  static var PRIORITY = 'priority';
+
+  static var CREATED_AT= 'created_at';
+
+  static var SPENT_TIME= 'spent_time';
+
   DBConstants._();
 
-  // Store Name
-  static const String STORE_NAME = 'demo';
+
 
   // DB Name
   static const DB_NAME = 'myTasks.db';
 
-  // Fields
-  static const FIELD_ID = 'id';
+  // Task history table
+  static const String TASK_HISTORY = 'task_history';
+
 }

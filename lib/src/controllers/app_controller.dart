@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
+import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/remote/exceptions/dio_error_util.dart';
 import '../../src/data/repository.dart';
 
@@ -37,9 +38,16 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
 
   RxBool isUserClientLoggedIn = false.obs;
 
+  List<TaskModel>? taskHistoryList = [];
+  getTaskHistoryList() async{
+    taskHistoryList = await repository.getTaskHistoryList();
+    print("taskHistoryList ${taskHistoryList}");
+  }
+
   @override
   void onInit() async {
     print('AppController_init()');
+    getTaskHistoryList();
     // getProjectsEasyWay();
     listenToFirebase();
     super.onInit();

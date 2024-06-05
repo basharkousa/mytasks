@@ -109,7 +109,7 @@ class ErrorAppWidget extends StatelessWidget {
 
   Widget buildReloadButton(BuildContext context) {
     return Container(
-      height: 42.00,
+      height: 42.00.h,
       margin: EdgeInsetsDirectional.only(
           start: Dimens.mainMargin,
           end: Dimens.mainMargin,
@@ -135,7 +135,7 @@ class ErrorAppWidget extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 14.sp,
             color: const Color(0xffffffff).withOpacity(0.87),
           ),
         ),
