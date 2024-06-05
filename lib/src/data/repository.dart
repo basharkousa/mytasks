@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:dio/dio.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comment_model.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';

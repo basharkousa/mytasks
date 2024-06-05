@@ -9,7 +9,6 @@ import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
-import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
 import 'package:mytasks/src/ui/widgets/items/item_comment.dart';
 import 'package:mytasks/src/utils/basic_tools.dart';

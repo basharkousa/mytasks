@@ -1,15 +1,11 @@
 import 'package:get/get.dart';
 import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
-import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
-import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
-import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/buttons/button_default.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
@@ -68,20 +64,7 @@ class EditTaskScreen extends GetWidget<EditTaskController> {
             buildDueDateTextField(context),
             SizedBox(height: 24.h),
             buildTaskDescriptionTextField(context),
-/*            buildTextFieldCompanyActivity(context),
-
-            SizedBox(height: 18.h),
-            buildTextFieldResponsibleName(context),
-
-            SizedBox(height: 18.h),
-            buildTextFieldJobTitle(context),
-
-            SizedBox(height: 18.h),
-            buildTextFieldCommercialRegistrationNo(context),*/
-
-
             SizedBox(height: 24.h),
-
           ],
         ),
       ),

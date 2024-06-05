@@ -3,11 +3,8 @@ import 'package:get/get.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comment_model.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
-import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
-import 'package:mytasks/src/data/models/projectsmodels/projectsresponse/projects_response.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/repository.dart';
-import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_screen.dart';
 
 // with SingleGetTickerProviderMixin
 class CommentsController extends GetxController{

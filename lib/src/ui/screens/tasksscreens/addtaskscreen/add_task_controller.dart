@@ -5,7 +5,6 @@ import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/tasksmodels/task_form_model.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/repository.dart';
-import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_screen.dart';
 
 // with SingleGetTickerProviderMixin
 class AddTaskController extends GetxController{

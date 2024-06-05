@@ -1,19 +1,13 @@
 import 'package:appflowy_board/appflowy_board.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:marquee_widget/marquee_widget.dart';
-import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/fonts.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
-import 'package:mytasks/src/configs/colors.dart';
-import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
-import 'package:mytasks/src/ui/widgets/common/loading_widget.dart';
 import 'package:mytasks/src/utils/basic_tools.dart';
 
 class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
@@ -56,7 +50,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
       snapshotLiveData: controller.sectionsResponseLiveData,
       contentWidget: (data) {
         return AppFlowyBoard(
-          controller: controller.appFlowyController,
+          controller: controller.appFlowyController?? AppFlowyBoardController(),
           config: AppFlowyBoardConfig(
               boardCornerRadius: 10.r,
               groupCornerRadius: 16.r,
