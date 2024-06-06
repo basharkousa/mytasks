@@ -2,6 +2,7 @@ import 'package:appflowy_board/appflowy_board.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/projectsmodels/project_model.dart';
 import 'package:mytasks/src/data/models/sectionsmodels/section_model.dart';
@@ -14,6 +15,8 @@ import 'package:mytasks/src/data/repository.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_screen.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_screen.dart';
+import 'package:mytasks/src/utils/basic_tools.dart';
 
 // with SingleGetTickerProviderMixin
 class ProjectDetailsController extends GetxController {
@@ -188,6 +191,9 @@ class ProjectDetailsController extends GetxController {
           if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
               // taskModel.spentTime = "${DateTime.now()}";
              repository.addTaskHistoryItem(taskModel);
+             BasicTools.showSnackBarMessage("${taskModel.content} ${LocaleKeys.task_complted.tr}",onTap: (){
+               Get.toNamed(TaskHistoryScreen.route,);
+             });
              //todo Show Notification
              print("ADD_To_HISTORY ${taskModel.content}");
           }

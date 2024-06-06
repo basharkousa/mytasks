@@ -31,6 +31,7 @@ class CommentsController extends GetxController{
   postComment() {
     commentForm.projectId = taskModel.projectId;
     commentForm.taskId = taskModel.id;
+    taskCommentEditingController.text = "";
     repository.postComment(commentForm).listen((event) {
       postCommentsResponseLiveData.value = event;
       switch(postCommentsResponseLiveData.value.status){

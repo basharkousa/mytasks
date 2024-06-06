@@ -109,7 +109,7 @@ class BasicTools {
           {SnackPosition? gravity,Function? onTap,bool? isDismissible,Duration? duration}
       ) {
 
-    Get.snackbar("تنبيه !!", msg??"msg",
+    Get.snackbar("Alert!!", msg??"msg",
         icon: Assets.icons.svg.icCheckboxInternet.svg(height: 21.h,width: 21.w,colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn)),
         snackPosition: gravity?? SnackPosition.TOP,
         duration: duration?? const Duration(seconds: 3),

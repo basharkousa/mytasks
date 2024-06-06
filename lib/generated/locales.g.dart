@@ -32,6 +32,8 @@ class LocaleKeys {
   static var spent_time = "spent_time";
   static var task_history = "task_history";
 
+  static var task_complted = "task_complted";
+
   LocaleKeys._();
   static const title = 'title';
   static const message = 'message';
@@ -86,6 +88,7 @@ class Locales {
     "no_task_history": "No Task History",
     "spent_time": "Spent Time:",
     "task_history": "Task History",
+    "task_complted": "is completed",
 
   };
   static const ar = {
@@ -123,6 +126,7 @@ class Locales {
     "no_task_history": "No Task History",
     "spent_time": "Spent Time:",
     "task_history": "Task History",
+    "task_complted": "تم",
 
   };
 
@@ -158,6 +162,7 @@ class Locales {
     "add_comment": "Kommentar hinzufügen",
     "no_task_history": "Kein Aufgabenverlauf",
     "spent_time": "Aufgewendete Zeit:",
-    "task_history": "Aufgabenverlauf"
+    "task_history": "Aufgabenverlauf",
+    "task_complted": "ist erledigt",
   };
 }
