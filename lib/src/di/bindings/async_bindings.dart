@@ -27,7 +27,6 @@ class AsyncBindings extends Bindings {
           ${DBConstants.SECTION_ID} TEXT,
           ${DBConstants.CONTENT} TEXT,
           ${DBConstants.DESCRIPTIN} TEXT,
-          ${DBConstants.IS_COMPLETED} INTEGER,
           ${DBConstants.PRIORITY} INTEGER,
           ${DBConstants.CREATED_AT} TEXT,
           ${DBConstants.SPENT_TIME} TEXT

@@ -155,9 +155,15 @@ class TaskModel {
 
   Map<String, Object?> toMapDatabase() {
     final map = <String, dynamic>{};
-
     map[DBConstants.ID] = id;
-
+    map[DBConstants.PROJECT_ID] = projectId;
+    map[DBConstants.SECTION_ID] = sectionId;
+    map[DBConstants.CONTENT] =  content;
+    map[DBConstants.DESCRIPTIN] = description;
+    // map[DBConstants.IS_COMPLETED] = isCompleted;
+    map[DBConstants.PRIORITY] = priority;
+    map[DBConstants.CREATED_AT] = createdAt;
+    map[DBConstants.SPENT_TIME] = spentTime??'';
     return map;
   }
 
@@ -167,9 +173,9 @@ class TaskModel {
     sectionId = map[DBConstants.SECTION_ID];
     content = map[DBConstants.CONTENT];
     description = map[DBConstants.DESCRIPTIN];
-    isCompleted = map[DBConstants.IS_COMPLETED];
+    // isCompleted = map[DBConstants.IS_COMPLETED];
     priority = map[DBConstants.PRIORITY];
     createdAt = map[DBConstants.CREATED_AT];
-    spentTime = map[DBConstants.SPENT_TIME];
+    spentTime = map[DBConstants.SPENT_TIME]??'';
   }
 }

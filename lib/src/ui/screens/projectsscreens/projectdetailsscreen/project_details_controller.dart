@@ -175,10 +175,15 @@ class ProjectDetailsController extends GetxController {
         case Status.LOADING:
           break;
         case Status.COMPLETED:
+          if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
+              taskModel.spentTime = "${DateTime.now()}";
+             repository.addTaskHistoryItem(taskModel);
+             print("ADD_To_HISTORY ${taskModel.content}");
+          }
            //remove it from group
-          repository.deleteTask(taskModel.id).listen((event){
-
-          });
+           //I had to remove it after I add it again to another group because no api
+           // to do that or to update the sectionId at least
+          repository.deleteTask(taskModel.id).listen((event){});
           break;
         case Status.ERROR:
           break;

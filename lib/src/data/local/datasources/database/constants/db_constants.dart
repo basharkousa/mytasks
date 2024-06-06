@@ -9,7 +9,7 @@ class DBConstants {
 
   static var DESCRIPTIN = 'description';
 
-  static var IS_COMPLETED = 'is_completed';
+  // static var IS_COMPLETED = 'is_completed';
 
   static var PRIORITY = 'priority';
 
