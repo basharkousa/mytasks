@@ -5,6 +5,7 @@ import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_s
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_screen.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_screen.dart';
 import '../../ui/screens/getStartedScreens/splashScreen/splash_screen.dart';
 
 class Routes {
@@ -34,6 +35,10 @@ class Routes {
     GetPage(
       name: EditTaskScreen.route,
       page: () => EditTaskScreen(),
+    ),
+    GetPage(
+      name: TaskHistoryScreen.route,
+      page: () => TaskHistoryScreen(),
     ),
   ];
 

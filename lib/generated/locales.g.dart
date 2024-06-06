@@ -33,6 +33,12 @@ class LocaleKeys {
   static String no_comments = "No Comments";
   static String add_comment = "Add Comment";
 
+  static var no_task_history = "No Task History";
+
+  static var spent_time = "Spent Time:";
+
+  static var task_history = "Task History";
+
   LocaleKeys._();
   static const title = 'title';
   static const message = 'message';

@@ -178,6 +178,7 @@ class ProjectDetailsController extends GetxController {
           if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
               taskModel.spentTime = "${DateTime.now()}";
              repository.addTaskHistoryItem(taskModel);
+             //todo Show Notification
              print("ADD_To_HISTORY ${taskModel.content}");
           }
            //remove it from group

@@ -4,6 +4,8 @@ import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_c
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_controller.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_controller.dart';
+import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_screen.dart';
 import '../../controllers/app_controller.dart';
 import '../../data/repository.dart';
 import 'modules/local_bindings.dart';
@@ -54,8 +56,9 @@ class AppBindings extends Bindings {
       return EditTaskController();
     });
 
-    /*---------------------------- SHOPS CONTROLLERS -------------------------------*/
-
+    Get.lazyPut<TaskHistoryController>(() {
+      return TaskHistoryController();
+    }, fenix: true);
 
   }
 }

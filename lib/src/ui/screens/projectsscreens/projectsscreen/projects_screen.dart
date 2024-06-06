@@ -23,7 +23,7 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
       bottom: false,
       child: Scaffold(
         appBar: AppBarProjects(
-          title: LocaleKeys.add_new_task_to.tr,
+          title: LocaleKeys.my_projects.tr,
         ),
         body: Container(
           margin: EdgeInsetsDirectional.only(
