@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
@@ -12,29 +14,22 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
 
   static AppController controller = Get.find();
 
-  var projectsResponseLiveData = ApiState<ProjectsResponse>.loading().obs;
-  //I Added to ways to call Api to show the differences between them here and in Repository.
-  getProjectsEasyWay() {
-    repository.getProjectsEasyWay().listen((event) {
-      projectsResponseLiveData.value = event;
-    });
-  }
-  getProjects() async {
-    projectsResponseLiveData.value = ApiState.loading();
-    try {
-      ProjectsResponse projectsResponse = await repository.getProjects();
-      projectsResponseLiveData.value = ApiState.completed(projectsResponse);
-    } on DioException catch (error, stacktrace) {
-      projectsResponseLiveData.value =
-          ApiState.error(DioErrorUtil.handleError(error));
-      print('DioException$error $stacktrace');
-    } catch (error, stacktrace) {
-      projectsResponseLiveData.value = ApiState.error(error.toString());
-      print('OtherException:$error $stacktrace');
-    }
-  }
-
   AppController(this.repository);
+
+
+  Isolate? backgroundIsolate;
+
+  Future<void> startBackgroundIsolate(TaskModel task) async {
+    // final receivePort = ReceivePort();
+    // backgroundIsolate = await Isolate.spawn(backgroundIsolatee, receivePort.sendPort);
+    //
+    // receivePort.listen((message) {
+    //   final taskId = message['taskId'] as String;
+    //   final elapsed = message['elapsed'] as double;
+    //   // Update task data in state management with elapsed time for taskId
+    //   task.stopTimer();
+    // });
+  }
 
   RxBool isUserClientLoggedIn = false.obs;
 
@@ -48,7 +43,6 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
   void onInit() async {
     print('AppController_init()');
     getTaskHistoryList();
-    // getProjectsEasyWay();
     listenToFirebase();
     super.onInit();
   }
@@ -78,6 +72,30 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
     } else {
       //isNotLogged();
       // Get.toNamed(LoginPage.loginPageRoute);
+    }
+  }
+
+
+  //Here Just Elaboration for how can we Call apis in the app
+  var projectsResponseLiveData = ApiState<ProjectsResponse>.loading().obs;
+  //I Added to ways to call Api to show the differences between them here and in Repository.
+  getProjectsEasyWay() {
+    repository.getProjectsEasyWay().listen((event) {
+      projectsResponseLiveData.value = event;
+    });
+  }
+  getProjects() async {
+    projectsResponseLiveData.value = ApiState.loading();
+    try {
+      ProjectsResponse projectsResponse = await repository.getProjects();
+      projectsResponseLiveData.value = ApiState.completed(projectsResponse);
+    } on DioException catch (error, stacktrace) {
+      projectsResponseLiveData.value =
+          ApiState.error(DioErrorUtil.handleError(error));
+      print('DioException$error $stacktrace');
+    } catch (error, stacktrace) {
+      projectsResponseLiveData.value = ApiState.error(error.toString());
+      print('OtherException:$error $stacktrace');
     }
   }
 }

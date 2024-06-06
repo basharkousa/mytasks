@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:mytasks/src/data/local/datasources/database/constants/db_constants.dart';
 import 'package:mytasks/src/data/models/api_state.dart';
@@ -85,7 +87,25 @@ class TaskModel {
   String? url;
   dynamic duration;
   var deleteTaskLiveData = ApiState.completed('').obs;
+
   var spentTime = "0s-0m-0h-0d-0m";
+  Stopwatch? stopwatch;
+  void startTimer() {
+    print("startTimer");
+    stopwatch ??= Stopwatch()..start();
+  }
+  double stopTimer() {
+    if (stopwatch != null) {
+      stopwatch!.stop();
+      final elapsed = stopwatch!.elapsedMilliseconds / 1000; // Convert to seconds
+      print("stopTimer elapsed:$elapsed");
+      spentTime = elapsed.toString();
+
+      stopwatch = null;
+      return elapsed;
+    }
+    return 0.0;
+  }
 
   TaskModel copyWith({
     String? id,

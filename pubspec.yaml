@@ -75,6 +75,7 @@ dependencies:
   spring_button: ^2.0.0
   timeago: ^3.2.2
   appflowy_board: ^0.1.0
+  stop_watch_timer: ^3.1.1
 
 
 

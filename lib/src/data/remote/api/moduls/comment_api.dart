@@ -39,7 +39,6 @@ class CommentApi {
       //   "file_name": "File.pdf"
       // }
     };
-
     data.removeWhere((key,value) => value == null);
     final res = await _dioClient.post(Endpoints.comments, data: data);
     return CommentModel.fromJson(res);
