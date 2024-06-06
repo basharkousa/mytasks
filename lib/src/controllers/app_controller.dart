@@ -42,7 +42,6 @@ class AppController extends GetxController with GetTickerProviderStateMixin {
   getTaskHistoryList() async{
     taskHistoryList = await repository.getTaskHistoryList();
     print("taskHistoryListLength ${taskHistoryList?.length}");
-    print("taskHistoryList ${taskHistoryList?[0].spentTime}");
   }
 
   @override
