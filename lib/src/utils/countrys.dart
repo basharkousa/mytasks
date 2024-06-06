@@ -1,4 +1,5 @@
 class CountryList{
+
   static final List<Map<String, String>> countryList = [
     {
       "name": " Syria",

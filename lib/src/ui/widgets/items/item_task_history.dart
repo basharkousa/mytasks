@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
-import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/utils/helper/date_helper.dart';
 
 class ItemTaskHistory extends StatelessWidget {
@@ -44,7 +43,7 @@ class ItemTaskHistory extends StatelessWidget {
               borderRadius:
               const BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
               child: CachedNetworkImage(
-                imageUrl: "user avtar link ",
+                imageUrl: "user avatar link ",
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) {
                   return CircleAvatar(
@@ -114,7 +113,8 @@ class ItemTaskHistory extends StatelessWidget {
                     width: 4.w,
                   ),
                   Text(
-                    task?.spentTime??"spentTime",
+                   DateHelper.formatSpentTime(task?.spentTime),
+                   //  task?.spentTime??'0',
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

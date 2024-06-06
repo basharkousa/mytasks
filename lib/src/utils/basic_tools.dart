@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'package:appflowy_board/appflowy_board.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:mytasks/generated/assets.gen.dart';
 import '../configs/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +53,8 @@ class BasicTools {
     FocusScope.of(context).unfocus();
   }
 
+
+
   // static void showToastMessage(String? msg,
   //     {ToastGravity? gravity ,Toast? toastLength}
   //     ){
@@ -97,6 +102,46 @@ class BasicTools {
       textColor: Colors.white,
       fontSize: 16.0,
     );
+  }
+
+  static void showSnackBarMessage(String? msg,
+      // {ToastGravity? gravity,Color? backgroundColor,}
+          {SnackPosition? gravity,Function? onTap,bool? isDismissible,Duration? duration}
+      ) {
+
+    Get.snackbar("تنبيه !!", msg??"msg",
+        icon: Assets.icons.svg.icCheckboxInternet.svg(height: 21.h,width: 21.w,colorFilter: ColorFilter.mode(Colors.green, BlendMode.srcIn)),
+        snackPosition: gravity?? SnackPosition.TOP,
+        duration: duration?? const Duration(seconds: 3),
+        isDismissible: isDismissible ?? true,
+        onTap: (e){
+          //todo add callback to somewhere for bidders in Auctions detailsPage
+          if(onTap != null){
+            onTap();
+          }
+        },
+        // backgroundGradient: LinearGradient(
+        //   // colors: [AppColors.startGrediant, AppColors.endGrediant],
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        // ),
+        backgroundColor: Colors.white,
+        boxShadows: [BoxShadow(
+          color: Color(0x14484D4D),
+          blurRadius: 24.r,
+          offset: Offset(4, 8),
+          spreadRadius: 0,
+        )],
+        // colorText: AppColors.darkBlue,
+        borderRadius: 8);
+
+    // Get.snackbar(
+    //     msg??'Message',
+    //     '',
+    //     snackPosition: gravity ?? SnackPosition.TOP,
+    //     colorText: Colors.white,
+    //     backgroundColor:  Colors.black.withOpacity(0.8)
+    // );
   }
 
   static getCountryFlagIcon(var i) {

@@ -88,7 +88,7 @@ class TaskModel {
   dynamic duration;
   var deleteTaskLiveData = ApiState.completed('').obs;
 
-  var spentTime = "0s-0m-0h-0d-0m";
+  var spentTime = "0.0";
   Stopwatch? stopwatch;
   void startTimer() {
     print("startTimer");
@@ -99,7 +99,7 @@ class TaskModel {
       stopwatch!.stop();
       final elapsed = stopwatch!.elapsedMilliseconds / 1000; // Convert to seconds
       print("stopTimer elapsed:$elapsed");
-      spentTime = elapsed.toString();
+      spentTime = elapsed.toInt().toString();
 
       stopwatch = null;
       return elapsed;

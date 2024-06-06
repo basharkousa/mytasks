@@ -31,9 +31,10 @@ class App extends StatelessWidget {
         return GetMaterialApp(
           initialBinding: AppBindings(),
           fallbackLocale: const Locale('en', 'US'),
+          locale: Get.deviceLocale,
           // locale: Locale('en'),
-          locale: Locale(
-              Get.find<SharedPreferenceHelper>().currentLanguage ?? 'en'),
+          // locale: Locale(
+          //     Get.find<SharedPreferenceHelper>().currentLanguage ?? 'en'),
           translationsKeys: AppTranslation.translations,
           debugShowMaterialGrid: false,
           title: "My Tasks App",

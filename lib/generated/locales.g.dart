@@ -6,38 +6,31 @@ class AppTranslation {
   static Map<String, Map<String, String>> translations = {
     'en': Locales.en,
     'ar': Locales.ar,
+    'de': Locales.de,
   };
 }
 
 class LocaleKeys {
-  static var add_new = "NEW";
-
-
-  static var add_new_task_to= "Add task to";
-  static var my_projects = "My Projects";
+  static var add_new = "add_new";
+  static var add_new_task_to= "add_new_task_to";
+  static var my_projects = "my_projects";
   static var section = "section";
-
-  static var enter_task_title = "Task Title";
-  static var task_title = "Task Title";
-  static var task_desc = "Task Description";
-  static var enter_task_desc = "Enter The Task Description";
-
-  static var task_due_date_title = "Due date";
-  static var task_due_date_desc = "Enter The Due date";
-
-  static var add = "Add";
-  static var update = "Update";
-  static var edit = "Edit";
-  static var delete = "Delete";
-  static var comments = "Comments";
-  static String no_comments = "No Comments";
-  static String add_comment = "Add Comment";
-
-  static var no_task_history = "No Task History";
-
-  static var spent_time = "Spent Time:";
-
-  static var task_history = "Task History";
+  static var enter_task_title = "enter_task_title";
+  static var task_title = "task_title";
+  static var task_desc = "task_desc";
+  static var enter_task_desc = "enter_task_desc";
+  static var task_due_date_title = "task_due_date_title";
+  static var task_due_date_desc = "task_due_date_desc";
+  static var add = "add";
+  static var update = "update";
+  static var edit = "edit";
+  static var delete = "delete";
+  static var comments = "comments";
+  static String no_comments = "no_comments";
+  static String add_comment = "add_comment";
+  static var no_task_history = "no_task_history";
+  static var spent_time = "spent_time";
+  static var task_history = "task_history";
 
   LocaleKeys._();
   static const title = 'title';
@@ -71,7 +64,29 @@ class Locales {
     'reload': 'RELOAD',
     'best_choice_to_begin_good_development':
         'Your best choice to begin a clean development',
-    'best_choice_to_organize_your_tasks':'Your best choice to organize your tasks'
+    'best_choice_to_organize_your_tasks':'Your best choice to organize your tasks',
+
+    "add_new": "NEW",
+    "add_new_task_to": "Add task to",
+    "my_projects": "My Projects",
+    "section": "section",
+    "enter_task_title": "Task Title",
+    "task_title": "Task Title",
+    "task_desc": "Task Description",
+    "enter_task_desc": "Enter The Task Description",
+    "task_due_date_title": "Due date",
+    "task_due_date_desc": "Enter The Due date",
+    "add": "Add",
+    "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete",
+    "comments": "Comments",
+    "no_comments": "No Comments",
+    "add_comment": "Add Comment",
+    "no_task_history": "No Task History",
+    "spent_time": "Spent Time:",
+    "task_history": "Task History",
+
   };
   static const ar = {
     'title': 'مرحبا!',
@@ -86,6 +101,63 @@ class Locales {
     'reload': 'إعادة تحميل',
     'best_choice_to_begin_good_development':
         'خيارك الأفضل! لبدأ عملية تطويرية نظيفة!!',
-    'best_choice_to_organize_your_tasks':'خيارك الأفضل! لتنظيم تاسكاتك!!'
+    'best_choice_to_organize_your_tasks':'خيارك الأفضل! لتنظيم تاسكاتك!!',
+
+    "add_new": "NEW",
+    "add_new_task_to": "Add task to",
+    "my_projects": "My Projects",
+    "section": "section",
+    "enter_task_title": "Task Title",
+    "task_title": "Task Title",
+    "task_desc": "Task Description",
+    "enter_task_desc": "Enter The Task Description",
+    "task_due_date_title": "Due date",
+    "task_due_date_desc": "Enter The Due date",
+    "add": "Add",
+    "update": "Update",
+    "edit": "Edit",
+    "delete": "Delete",
+    "comments": "Comments",
+    "no_comments": "No Comments",
+    "add_comment": "Add Comment",
+    "no_task_history": "No Task History",
+    "spent_time": "Spent Time:",
+    "task_history": "Task History",
+
+  };
+
+  static const de = {
+    "title": "Hallo!",
+    "message" : "Dies ist Englisch",
+    "connection_error": "Bitte überprüfen Sie Ihre Internetverbindung",
+    "no_internet": "Keine Internetverbindung",
+    "Looks_like_you_have_lost_connection": "Scheint so, als hätten Sie die Verbindung zum WLAN oder einer anderen Internetverbindung verloren",
+    "try_these_steps": "Gehen Sie wie folgt vor, um wieder online zu gehen:",
+    "check_your_modem_and_router": "Überprüfen Sie Ihr Modem und Ihren Router",
+    "reconnect_to_Wi_Fi": "Mit WLAN erneut verbinden",
+    "reload": "NEULADEN",
+    "best_choice_to_begin_good_development": "Ihre beste Wahl für eine saubere Entwicklung",
+    "best_choice_to_organize_your_tasks":"Ihre beste Wahl, um Ihre Aufgaben zu organisieren",
+
+    "add_new": "NEU",
+    "add_new_task_to": "Aufgabe hinzufügen zu",
+    "my_projects": "Meine Projekte",
+    "section": "Abschnitt",
+    "enter_task_title": "Aufgabenname",
+    "task_title": "Aufgabenname",
+    "task_desc": "Aufgabenbeschreibung",
+    "enter_task_desc": "Geben Sie die Aufgabenbeschreibung ein",
+    "task_due_date_title": "Fälligkeitsdatum",
+    "task_due_date_desc": "Geben Sie das Fälligkeitsdatum ein",
+    "add": "Hinzufügen",
+    "update": "Aktualisieren",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "comments": "Kommentare",
+    "no_comments": "Keine Kommentare",
+    "add_comment": "Kommentar hinzufügen",
+    "no_task_history": "Kein Aufgabenverlauf",
+    "spent_time": "Aufgewendete Zeit:",
+    "task_history": "Aufgabenverlauf"
   };
 }

@@ -9,7 +9,27 @@
   "reconnect_to_Wi_Fi": "Reconnect to Wi-Fi",
   "reload": "RELOAD",
   "best_choice_to_begin_good_development": "Your best choice to begin a clean development",
-  "best_choice_to_organize_your_tasks":"Your best choice to organize your tasks"
+  "best_choice_to_organize_your_tasks":"Your best choice to organize your tasks",
 
+  "add_new": "NEW",
+  "add_new_task_to": "Add task to",
+  "my_projects": "My Projects",
+  "section": "section",
+  "enter_task_title": "Task Title",
+  "task_title": "Task Title",
+  "task_desc": "Task Description",
+  "enter_task_desc": "Enter The Task Description",
+  "task_due_date_title": "Due date",
+  "task_due_date_desc": "Enter The Due date",
+  "add": "Add",
+  "update": "Update",
+  "edit": "Edit",
+  "delete": "Delete",
+  "comments": "Comments",
+  "no_comments": "No Comments",
+  "add_comment": "Add Comment",
+  "no_task_history": "No Task History",
+  "spent_time": "Spent Time:",
+  "task_history": "Task History"
 }
 

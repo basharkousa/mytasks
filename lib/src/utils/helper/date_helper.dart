@@ -10,6 +10,22 @@ class DateHelper {
     return timeago.format(dt, locale: Get.locale?.languageCode??"en");
   }
 
+  static String formatSpentTime(var spentSeconds) {
+    // int spentSeconds = 120; // Replace with your actual spent time in seconds
+    Duration duration = Duration(seconds: int.parse(spentSeconds));
+
+    String formattedTime = '';
+    if (duration.inHours > 0) {
+      formattedTime = '${duration.inHours}h ${duration.inMinutes % 60}m';
+    } else if (duration.inMinutes > 0) {
+      formattedTime = '${duration.inMinutes}m ${duration.inSeconds % 60}s';
+    } else {
+      formattedTime = '${duration.inSeconds}s';
+    }
+    return formattedTime;
+  }
+
+
  static  String formatDate(String inputDate) {
     DateTime dateTime = DateTime.parse(inputDate);
     DateFormat formatter = DateFormat.yMMMMd('ar');
@@ -66,4 +82,6 @@ class DateHelper {
       return 'Since ${difference.inSeconds} Seconds ';
     }
   }
+
+
 }

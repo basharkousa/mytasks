@@ -220,7 +220,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
         popupMenuItem(
           color: Colors.red,
           icon: Icons.delete_outline,
-          title: LocaleKeys.delete,
+          title: LocaleKeys.delete.tr,
           onTap: () {
             controller.deleteTask(taskItemFlowy,group);
           },

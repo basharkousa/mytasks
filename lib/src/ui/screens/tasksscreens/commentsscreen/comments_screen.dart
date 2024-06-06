@@ -26,7 +26,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
       bottom: false,
       child: Scaffold(
         appBar: AppBarProjects(
-          title: LocaleKeys.comments,
+          title: LocaleKeys.comments.tr,
         ),
         body: Column(children: [
           Expanded(child:Container(
