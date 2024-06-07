@@ -14,7 +14,7 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() {
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-    Future.delayed(const Duration(milliseconds: 1100), () {
+    Future.delayed(const Duration(milliseconds: 3100), () {
       goToProjectsScreen();
     });
     super.onInit();

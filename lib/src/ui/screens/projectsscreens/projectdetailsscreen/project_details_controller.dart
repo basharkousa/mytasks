@@ -189,19 +189,20 @@ class ProjectDetailsController extends GetxController {
         case Status.LOADING:
           break;
         case Status.COMPLETED:
-
+          appFlowyGroupItem.taskModel = event.data!;
           if(appFlowyToGroupController?.groupData.headerData.groupName == "InProgress"){
             taskModel.startTimer();
+            appFlowyGroupItem.taskModel.startTimer();
             print("startTimer ${event.data?.spentTime}");
           }
           if(appFlowyFromGroupController?.groupData.headerData.groupName == "InProgress"){
-
             taskModel.stopTimer();
+            appFlowyGroupItem.taskModel.stopTimer();
             print("stopTimer ${event.data?.spentTime}");
           }
           if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
-              // taskModel.spentTime = "${DateTime.now()}";
-             repository.addTaskHistoryItem(taskModel);
+             event.data?.spentTime = taskModel.spentTime;
+             repository.addTaskHistoryItem(event.data!);
              BasicTools.showSnackBarMessage("${event.data?.content} ${LocaleKeys.task_complted.tr}",onTap: (){
                Get.toNamed(TaskHistoryScreen.route,);
              });
@@ -221,7 +222,7 @@ class ProjectDetailsController extends GetxController {
 }
 
 class TaskItemFlowy extends AppFlowyGroupItem {
-  final TaskModel taskModel;
+   TaskModel taskModel;
 
   TaskItemFlowy(this.taskModel);
 
