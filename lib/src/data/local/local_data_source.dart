@@ -21,6 +21,11 @@ class LocalDataSource {
   Future<void> addTaskHistoryItem(TaskModel task) =>
       _databaseHelper.addTaskHistoryQuery(task);
 
+  Future<void> clearTaskHistoryList() =>
+      _databaseHelper.clearTaskHistoryList();
+
+
+
   /* --------------------------------SHERED_PREFFERNCES METHODES------------------------------------- */
 
 

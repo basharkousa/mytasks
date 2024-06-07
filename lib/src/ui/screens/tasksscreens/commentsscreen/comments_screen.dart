@@ -10,6 +10,7 @@ import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_cont
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
+import 'package:mytasks/src/ui/widgets/common/loading_widget.dart';
 import 'package:mytasks/src/ui/widgets/items/item_comment.dart';
 import 'package:mytasks/src/utils/basic_tools.dart';
 import 'package:shimmer/shimmer.dart';
@@ -137,7 +138,22 @@ class CommentsScreen extends GetWidget<CommentsController> {
             // isObscure: true,
             prefixIcon: Assets.icons.svg.icMessageTitle
                 .svg(height: 10.h, width: 10.w, color: const Color(0xffA6A6A6)),
-            suffixIcon: InkWell(
+            suffixIcon: GetXStateWidget(
+              snapshotLiveData: controller.postCommentsResponseLiveData,
+            loadingWidget: SizedBox(width: 4.w,height:4.w,child:LoadingWidget(),),
+            contentWidget: (data){
+
+              return InkWell(
+                onTap: (){
+                  _onAddCommentSubmit(context);
+                },
+                child: Icon(
+                  Icons.send,
+                  color: AppColors.lightAccent,
+                ),
+              );
+            },
+            errorWidget: InkWell(
               onTap: (){
                 _onAddCommentSubmit(context);
               },
@@ -145,6 +161,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
                 Icons.send,
                 color: AppColors.lightAccent,
               ),
+            ),
             ),
             textInputAction: TextInputAction.next,
             isRequired: false,

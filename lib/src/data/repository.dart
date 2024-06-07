@@ -88,6 +88,10 @@ class Repository extends BaseApiResponse {
   Future<List<TaskModel>>? getTaskHistoryList() =>
       _localDataSource?.getTaskHistoryList();
 
+  Future<void>? clearTaskHistoryList() =>
+      _localDataSource?.clearTaskHistoryList();
+
+
   Future<void>? addTaskHistoryItem(TaskModel task) =>
       _localDataSource?.addTaskHistoryItem(task);
 

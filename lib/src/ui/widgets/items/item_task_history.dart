@@ -113,7 +113,8 @@ class ItemTaskHistory extends StatelessWidget {
                     width: 4.w,
                   ),
                   Text(
-                   DateHelper.formatSpentTime(task?.spentTime),
+                   DateHelper.formatDuration(task?.spentTime??0),
+                   //  DateHelper.printDuration(Duration(milliseconds: ))),
                    //  task?.spentTime??'0',
                     textAlign: TextAlign.start,
                     maxLines: 1,

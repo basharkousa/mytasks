@@ -29,7 +29,7 @@ class AsyncBindings extends Bindings {
           ${DBConstants.DESCRIPTIN} TEXT,
           ${DBConstants.PRIORITY} INTEGER,
           ${DBConstants.CREATED_AT} TEXT,
-          ${DBConstants.SPENT_TIME} TEXT
+          ${DBConstants.SPENT_TIME} INTEGER
         )
       ''');
           });

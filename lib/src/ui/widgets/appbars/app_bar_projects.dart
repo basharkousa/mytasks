@@ -30,7 +30,7 @@ class AppBarProjects extends StatelessWidget implements PreferredSizeWidget{
               children: [
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
-                  child: ButtonRounded(icon: Icon(Icons.settings,color: AppColors.lightAccent,),).onClickBounce(() {
+                  child: ButtonRounded(icon: Icon(Icons.history,color: AppColors.lightAccent,),).onClickBounce(() {
                     Get.toNamed(TaskHistoryScreen.route);
                   }),
                 ),

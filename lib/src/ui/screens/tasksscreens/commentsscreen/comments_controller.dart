@@ -27,7 +27,7 @@ class CommentsController extends GetxController{
     });
   }
 
-  var postCommentsResponseLiveData = ApiState<CommentModel>.loading().obs;
+  var postCommentsResponseLiveData = ApiState<CommentModel>.completed(null).obs;
   postComment() {
     commentForm.projectId = taskModel.projectId;
     commentForm.taskId = taskModel.id;

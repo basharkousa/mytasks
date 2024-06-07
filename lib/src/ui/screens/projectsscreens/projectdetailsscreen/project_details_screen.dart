@@ -237,7 +237,6 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
       print('Selected item: $selectedItem');
     }
   }
-
   popupMenuItem({void Function()? onTap,
     String title = '',
     IconData icon = Icons.insert_emoticon,
@@ -272,7 +271,6 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
       ),
     );
   }
-
   buildShowTaskOptionsWidget(TaskItemFlowy taskItemFlowy, AppFlowyGroupData<dynamic> group) {
     return GestureDetector(
       onTapDown: (details) =>

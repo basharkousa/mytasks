@@ -31,6 +31,7 @@
   "no_task_history": "No Task History",
   "spent_time": "Spent Time:",
   "task_history": "Task History",
-  "task_complted": "is completed"
+  "task_complted": "is completed",
+  "clear_history": "Clear History"
 }
 

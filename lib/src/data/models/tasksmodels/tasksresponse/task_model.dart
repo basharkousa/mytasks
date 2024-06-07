@@ -88,23 +88,23 @@ class TaskModel {
   dynamic duration;
   var deleteTaskLiveData = ApiState.completed('').obs;
 
-  var spentTime = "0.0";
+  var spentTime = 0;
   Stopwatch? stopwatch;
   void startTimer() {
     print("startTimer");
     stopwatch ??= Stopwatch()..start();
   }
-  double stopTimer() {
+  int stopTimer() {
     if (stopwatch != null) {
       stopwatch!.stop();
-      final elapsed = stopwatch!.elapsedMilliseconds / 1000; // Convert to seconds
+      final elapsed = stopwatch!.elapsedMilliseconds;
       print("stopTimer elapsed:$elapsed");
-      spentTime = elapsed.toInt().toString();
+      spentTime = elapsed.toInt();
 
       stopwatch = null;
       return elapsed;
     }
-    return 0.0;
+    return 0;
   }
 
   TaskModel copyWith({
@@ -183,7 +183,7 @@ class TaskModel {
     // map[DBConstants.IS_COMPLETED] = isCompleted;
     map[DBConstants.PRIORITY] = priority;
     map[DBConstants.CREATED_AT] = createdAt;
-    map[DBConstants.SPENT_TIME] = spentTime??'';
+    map[DBConstants.SPENT_TIME] = spentTime;
     return map;
   }
 

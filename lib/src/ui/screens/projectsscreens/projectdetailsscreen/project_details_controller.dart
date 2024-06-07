@@ -105,6 +105,9 @@ class ProjectDetailsController extends GetxController {
           await repository.getTasks(project: project, section: section);
       section.tasksResponseLiveData.value = ApiState.completed(tasksResponse);
       section.tasksResponseLiveData.value.data?.tasks?.reversed.forEach((task) {
+        if(section.name == "InProgress"){
+          task.startTimer();
+        }
         taskItemFlowyList.add(TaskItemFlowy(task));
       });
     } on DioException catch (error, stacktrace) {
@@ -124,6 +127,14 @@ class ProjectDetailsController extends GetxController {
         arguments: {"group": group, "projectId": project.id});
     if (addedTask != null) {
       TaskModel taskModel = addedTask;
+      switch(group.headerData.groupName){
+        case "InProgress":
+          taskModel.startTimer();
+          break;
+        case "Completed":
+          repository.addTaskHistoryItem(taskModel);
+          break;
+      }
       appFlowyController?.insertGroupItem(
           group.id, 0, TaskItemFlowy(taskModel));
     }
@@ -181,17 +192,17 @@ class ProjectDetailsController extends GetxController {
 
           if(appFlowyToGroupController?.groupData.headerData.groupName == "InProgress"){
             taskModel.startTimer();
-            print("startTimer ${taskModel.spentTime}");
+            print("startTimer ${event.data?.spentTime}");
           }
           if(appFlowyFromGroupController?.groupData.headerData.groupName == "InProgress"){
 
             taskModel.stopTimer();
-            print("stopTimer ${taskModel.spentTime}");
+            print("stopTimer ${event.data?.spentTime}");
           }
           if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
               // taskModel.spentTime = "${DateTime.now()}";
              repository.addTaskHistoryItem(taskModel);
-             BasicTools.showSnackBarMessage("${taskModel.content} ${LocaleKeys.task_complted.tr}",onTap: (){
+             BasicTools.showSnackBarMessage("${event.data?.content} ${LocaleKeys.task_complted.tr}",onTap: (){
                Get.toNamed(TaskHistoryScreen.route,);
              });
              //todo Show Notification

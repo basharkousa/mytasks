@@ -20,6 +20,11 @@ class TaskHistoryController extends GetxController{
     taskHistoryList.addAll(list?.reversed??[]);
   }
 
+  clearTaskHistory() async{
+    void clearResult =  await repository.clearTaskHistoryList();
+    getTaskHistory();
+  }
+
   @override
   void onInit() {
     getTaskHistory();

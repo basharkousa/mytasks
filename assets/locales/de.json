@@ -31,5 +31,6 @@
   "no_task_history": "Kein Aufgabenverlauf",
   "spent_time": "Aufgewendete Zeit:",
   "task_history": "Aufgabenverlauf",
-  "task_complted": "ist erledigt"
+  "task_complted": "ist erledigt",
+  "clear_history": "Clear History"
 }

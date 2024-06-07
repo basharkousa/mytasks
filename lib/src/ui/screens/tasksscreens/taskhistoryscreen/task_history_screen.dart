@@ -9,7 +9,9 @@ import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dar
 import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
+import 'package:mytasks/src/ui/widgets/buttons/button_default.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
+import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
 import 'package:mytasks/src/ui/widgets/items/item_comment.dart';
 import 'package:mytasks/src/ui/widgets/items/item_task_history.dart';
@@ -58,6 +60,7 @@ class TaskHistoryScreen extends GetWidget<TaskHistoryController> {
             )),
           ],
         ),
+        bottomNavigationBar: buildButtonClearHistory(),
       ),
     );
   }
@@ -115,5 +118,13 @@ class TaskHistoryScreen extends GetWidget<TaskHistoryController> {
           },
           itemCount: 4),
     );
+  }
+
+  buildButtonClearHistory() {
+    return ButtonDefault(
+      title: LocaleKeys.clear_history.tr,
+    ).onClickBounce((){
+      controller.clearTaskHistory();
+    });
   }
 }

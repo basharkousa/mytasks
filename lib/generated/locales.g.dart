@@ -5,7 +5,6 @@
 class AppTranslation {
   static Map<String, Map<String, String>> translations = {
     'en': Locales.en,
-    'ar': Locales.ar,
     'de': Locales.de,
   };
 }
@@ -33,6 +32,8 @@ class LocaleKeys {
   static var task_history = "task_history";
 
   static var task_complted = "task_complted";
+
+  static var clear_history = "clear_history";
 
   LocaleKeys._();
   static const title = 'title';
@@ -89,44 +90,7 @@ class Locales {
     "spent_time": "Spent Time:",
     "task_history": "Task History",
     "task_complted": "is completed",
-
-  };
-  static const ar = {
-    'title': 'مرحبا!',
-    'message': 'هذه هي اللغة العربية',
-    'connection_error': 'تحقق من اتصال الانتذنت لديك من فضلك',
-    'no_internet': 'لا يوجد اتصال بالإنترنت',
-    'Looks_like_you_have_lost_connection':
-        'يبدو أنك فقدت الاتصال بشبكة WI-FI أو اتصال إنترنت آخر',
-    'try_these_steps': 'جرب هذه الخطوات لإعادة الاتصال بالإنترنت :',
-    'check_your_modem_and_router': 'تحقق من المودم و الراوتر',
-    'reconnect_to_Wi_Fi': 'إعادة الاتصال بشبكة Wi-Fi',
-    'reload': 'إعادة تحميل',
-    'best_choice_to_begin_good_development':
-        'خيارك الأفضل! لبدأ عملية تطويرية نظيفة!!',
-    'best_choice_to_organize_your_tasks':'خيارك الأفضل! لتنظيم تاسكاتك!!',
-
-    "add_new": "NEW",
-    "add_new_task_to": "Add task to",
-    "my_projects": "My Projects",
-    "section": "section",
-    "enter_task_title": "Task Title",
-    "task_title": "Task Title",
-    "task_desc": "Task Description",
-    "enter_task_desc": "Enter The Task Description",
-    "task_due_date_title": "Due date",
-    "task_due_date_desc": "Enter The Due date",
-    "add": "Add",
-    "update": "Update",
-    "edit": "Edit",
-    "delete": "Delete",
-    "comments": "Comments",
-    "no_comments": "No Comments",
-    "add_comment": "Add Comment",
-    "no_task_history": "No Task History",
-    "spent_time": "Spent Time:",
-    "task_history": "Task History",
-    "task_complted": "تم",
+    "clear_history": "Clear History",
 
   };
 
@@ -164,5 +128,6 @@ class Locales {
     "spent_time": "Aufgewendete Zeit:",
     "task_history": "Aufgabenverlauf",
     "task_complted": "ist erledigt",
+    "clear_history": "Clear History",
   };
 }

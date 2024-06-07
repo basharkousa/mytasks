@@ -34,6 +34,10 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) => TaskModel.fromMapDataBase(maps[i]));
   }
 
+  Future<void> clearTaskHistoryList() async {
+    await _db.delete(DBConstants.TASK_HISTORY);
+  }
+
  /* Future<int> delete(int id) async{
     return _db.delete('example', where: 'id = ?', whereArgs: [id]);
   }
