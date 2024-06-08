@@ -27,7 +27,6 @@ class ProjectDetailsController extends GetxController {
 
   AppFlowyBoardController? appFlowyController;
   var sectionsResponseLiveData = ApiState<SectionsResponse>.loading().obs;
-
   getSections() async {
     sectionsResponseLiveData.value = ApiState.loading();
     try {
@@ -94,7 +93,6 @@ class ProjectDetailsController extends GetxController {
   }
 
   getTasks(ProjectModel project, SectionModel section) async {
-    // List<TaskItemFlowy> taskItemFlowyList = [TaskItemFlowy("Card 1"),];
     List<TaskItemFlowy> taskItemFlowyList = [];
 
     section.tasksResponseLiveData.value = ApiState.loading();
@@ -103,7 +101,7 @@ class ProjectDetailsController extends GetxController {
           await repository.getTasks(project: project, section: section);
       section.tasksResponseLiveData.value = ApiState.completed(tasksResponse);
       section.tasksResponseLiveData.value.data?.tasks?.reversed.forEach((task) {
-        if(section.name == "InProgress"){
+        if (section.name == "InProgress") {
           task.startTimer();
         }
         taskItemFlowyList.add(TaskItemFlowy(task));
@@ -125,7 +123,7 @@ class ProjectDetailsController extends GetxController {
         arguments: {"group": group, "projectId": project.id});
     if (addedTask != null) {
       TaskModel taskModel = addedTask;
-      switch(group.headerData.groupName){
+      switch (group.headerData.groupName) {
         case "InProgress":
           taskModel.startTimer();
           break;
@@ -145,9 +143,7 @@ class ProjectDetailsController extends GetxController {
       TaskModel taskModel = addedTask;
       appFlowyController?.updateGroupItem(
           taskItemFlowy.taskModel.sectionId.toString(),
-          TaskItemFlowy(
-
-              taskModel));
+          TaskItemFlowy(taskModel));
     }
   }
 
@@ -185,34 +181,41 @@ class ProjectDetailsController extends GetxController {
       ..description = taskModel.description
       ..dueDate = taskModel.due?.date;
     repository.postTask(taskForm).listen((event) {
-      switch(event.status){
+      switch (event.status) {
         case Status.LOADING:
           break;
         case Status.COMPLETED:
           appFlowyGroupItem.taskModel = event.data!;
-          if(appFlowyToGroupController?.groupData.headerData.groupName == "InProgress"){
+          if (appFlowyToGroupController?.groupData.headerData.groupName ==
+              "InProgress") {
             taskModel.startTimer();
             appFlowyGroupItem.taskModel.startTimer();
             print("startTimer ${event.data?.spentTime}");
           }
-          if(appFlowyFromGroupController?.groupData.headerData.groupName == "InProgress"){
+          if (appFlowyFromGroupController?.groupData.headerData.groupName ==
+              "InProgress") {
             taskModel.stopTimer();
             appFlowyGroupItem.taskModel.stopTimer();
             print("stopTimer ${event.data?.spentTime}");
           }
-          if(appFlowyToGroupController?.groupData.headerData.groupName == "Completed"){
-             event.data?.spentTime = taskModel.spentTime;
-             repository.addTaskHistoryItem(event.data!);
-             BasicTools.showSnackBarMessage("${event.data?.content} ${LocaleKeys.task_complted.tr}",onTap: (){
-               Get.toNamed(TaskHistoryScreen.route,);
-             });
-             //todo Show Notification
-             print("ADD_To_HISTORY ${taskModel.content}");
+          if (appFlowyToGroupController?.groupData.headerData.groupName ==
+              "Completed") {
+            event.data?.spentTime = taskModel.spentTime;
+            repository.addTaskHistoryItem(event.data!);
+            BasicTools.showSnackBarMessage(
+                "${event.data?.content} ${LocaleKeys.task_complted.tr}",
+                onTap: () {
+              Get.toNamed(
+                TaskHistoryScreen.route,
+              );
+            });
+            //todo Show Notification
+            print("ADD_To_HISTORY ${taskModel.content}");
           }
-           //remove it from group
-           //I had to remove it after I add it again to another group because no api
-           // to do that or to update the sectionId at least!!
-          repository.deleteTask(taskModel.id).listen((event){});
+          //remove it from group
+          //I had to remove it after I add it again to another group because no api
+          // to do that or to update the sectionId at least!!
+          repository.deleteTask(taskModel.id).listen((event) {});
           break;
         case Status.ERROR:
           break;
@@ -222,7 +225,7 @@ class ProjectDetailsController extends GetxController {
 }
 
 class TaskItemFlowy extends AppFlowyGroupItem {
-   TaskModel taskModel;
+  TaskModel taskModel;
 
   TaskItemFlowy(this.taskModel);
 
