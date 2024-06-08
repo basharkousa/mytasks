@@ -71,10 +71,12 @@ class SharedPreferenceHelper {
       return _sharedPreference.getBool(Preferences.is_dark_mode) ?? false;
   }
 
-
   Future<void> changeBrightnessToDark(bool value) {
       return _sharedPreference.setBool(Preferences.is_dark_mode, value);
+  }
 
+  String? get themeMode {
+    return _sharedPreference.getString(Preferences.theme_mode)??"light";
   }
 
   // Language:---------------------------------------------------

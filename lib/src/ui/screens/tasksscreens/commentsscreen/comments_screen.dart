@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comments_response.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
+import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
@@ -26,7 +27,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
       top: false,
       bottom: false,
       child: Scaffold(
-        appBar: AppBarProjects(
+        appBar: AppBarDefault(
           title: LocaleKeys.comments.tr,
         ),
         body: Column(children: [
@@ -35,7 +36,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
                 start: Dimens.mainMargin, end: Dimens.mainMargin),
             child: RefreshIndicator(
               onRefresh: controller.onRefresh,
-              color: AppColors.lightAccent,
+              color: Get.theme.colorScheme.secondary,
               child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   child: Column(
@@ -73,7 +74,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
           height: Get.width,
           child: Container(
               decoration: ShapeDecoration(
-                color: Colors.white,
+                // color: Colors.white,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(width: 0.50.w, color: Color(0x99E6E6E6)),
                   borderRadius: BorderRadius.circular(16.r),
@@ -149,7 +150,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
                 },
                 child: Icon(
                   Icons.send,
-                  color: AppColors.lightAccent,
+                  color: Get.theme.colorScheme.secondary,
                 ),
               );
             },
@@ -159,7 +160,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
               },
               child: Icon(
                 Icons.send,
-                color: AppColors.lightAccent,
+                color: Get.theme.colorScheme.secondary,
               ),
             ),
             ),

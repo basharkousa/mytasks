@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:mytasks/src/configs/colors.dart';
 
 class ButtonRounded extends StatelessWidget {
   Icon? icon;
@@ -25,7 +27,7 @@ class ButtonRounded extends StatelessWidget {
       child: icon?? Icon(
         Icons.arrow_back_outlined,
         size: 20.w,
-        color: Colors.black,
+        // color: Get.theme.colorScheme.secondary,
       ),
     );
   }

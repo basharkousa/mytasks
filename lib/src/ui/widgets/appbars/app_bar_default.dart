@@ -15,7 +15,7 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget{
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: transparent ? Colors.transparent : backgroundColor??AppColors.lightBG,
+      // backgroundColor: transparent ? Colors.transparent : backgroundColor??AppColors.lightBG,
       elevation: 0.2.h,
 //      leading: SizedBox(child: Icon(Icons.arrow_back,color: Colors.white,),
 //        height: 4,width: 4,),
@@ -30,7 +30,7 @@ class AppBarDefault extends StatelessWidget implements PreferredSizeWidget{
                   title??"title",
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    color: Color(0xFF151515),
+                    // color: Color(0xFF151515),
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w700,
                     height: 0,

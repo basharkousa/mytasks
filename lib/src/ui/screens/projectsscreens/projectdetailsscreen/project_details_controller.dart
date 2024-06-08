@@ -47,8 +47,6 @@ class ProjectDetailsController extends GetxController {
   @override
   void onInit() {
     appFlowyController = AppFlowyBoardController(
-      onMoveGroup: (fromGroupId, fromIndex, toGroupId, toIndex) {},
-      onMoveGroupItem: (groupId, fromIndex, toIndex) {},
       onMoveGroupItemToGroup: (fromGroupId, fromIndex, toGroupId, toIndex) {
         debugPrint('Move $fromGroupId:$fromIndex to $toGroupId:$toIndex');
 
@@ -147,7 +145,9 @@ class ProjectDetailsController extends GetxController {
       TaskModel taskModel = addedTask;
       appFlowyController?.updateGroupItem(
           taskItemFlowy.taskModel.sectionId.toString(),
-          TaskItemFlowy(taskModel));
+          TaskItemFlowy(
+
+              taskModel));
     }
   }
 
@@ -182,8 +182,8 @@ class ProjectDetailsController extends GetxController {
       ..projectId = project.id
       ..sectionId = appFlowyToGroupController?.groupData.headerData.groupId
       ..content = taskModel.content
-    ..description = taskModel.description
-    ..dueDate = taskModel.due?.date;
+      ..description = taskModel.description
+      ..dueDate = taskModel.due?.date;
     repository.postTask(taskForm).listen((event) {
       switch(event.status){
         case Status.LOADING:

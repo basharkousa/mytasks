@@ -10,6 +10,10 @@ class AppColors {
   static Color lightBG = const Color(0xfffcfcff);
   static Color darkBG = Colors.black;
 
+  static Color redAccent =  Colors.red;
+  static Color yellowAccent =  Colors.yellow;
+
+
   static Color fifeStarsColor = const Color(0xff415E24);
   static Color fourStarsColor = const Color(0xff5E842F);
 

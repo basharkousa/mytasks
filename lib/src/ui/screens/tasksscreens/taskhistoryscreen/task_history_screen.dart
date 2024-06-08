@@ -40,7 +40,7 @@ class TaskHistoryScreen extends GetWidget<TaskHistoryController> {
                   start: Dimens.mainMargin, end: Dimens.mainMargin),
               child: RefreshIndicator(
                 onRefresh: controller.onRefresh,
-                color: AppColors.lightAccent,
+                color: Get.theme.colorScheme.secondary,
                 child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: Column(

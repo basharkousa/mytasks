@@ -98,7 +98,7 @@ class BasicTools {
       toastLength: Toast.LENGTH_LONG,
       gravity: gravity ?? ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: AppColors.lightAccent,
+      backgroundColor: Get.theme.colorScheme.secondary,
       textColor: Colors.white,
       fontSize: 16.0,
     );
@@ -126,6 +126,7 @@ class BasicTools {
         //   end: Alignment.bottomRight,
         // ),
         backgroundColor: Colors.white,
+        colorText: Colors.black,
         boxShadows: [BoxShadow(
           color: Color(0x14484D4D),
           blurRadius: 24.r,

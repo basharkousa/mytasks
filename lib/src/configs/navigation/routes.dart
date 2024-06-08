@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_screen.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_screen.dart';
+import 'package:mytasks/src/ui/screens/settingscreen/settings_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_screen.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_screen.dart';
@@ -39,6 +40,10 @@ class Routes {
     GetPage(
       name: TaskHistoryScreen.route,
       page: () => TaskHistoryScreen(),
+    ),
+    GetPage(
+      name: SettingsScreen.route,
+      page: () => SettingsScreen(),
     ),
   ];
 

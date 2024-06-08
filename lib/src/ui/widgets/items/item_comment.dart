@@ -18,7 +18,7 @@ class ItemComment extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: EdgeInsetsDirectional.all(16.w),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        // color: Colors.white,
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 0.50.w, color: Color(0x99E6E6E6)),
           borderRadius: BorderRadius.circular(16.r),
@@ -73,7 +73,7 @@ class ItemComment extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Color(0xFF151515),
+                    // color: Color(0xFF151515),
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -87,7 +87,7 @@ class ItemComment extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.black12,
+                    color: Color(0x99E6E6E6),
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -97,9 +97,10 @@ class ItemComment extends StatelessWidget {
           ),
         ],
       ),
-    ).onClickBounce(() {
-      onClick(comment!);
-    });
+    );
+    //     .onClickBounce(() {
+    //   onClick(comment!);
+    // });
   }
 }
 

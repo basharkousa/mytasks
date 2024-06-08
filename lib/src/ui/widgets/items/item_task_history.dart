@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
+import 'package:mytasks/src/configs/app_theme.dart';
+import 'package:mytasks/src/data/local/datasources/sharedpref/shared_preference_helper.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/utils/helper/date_helper.dart';
 
@@ -19,7 +21,7 @@ class ItemTaskHistory extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: EdgeInsetsDirectional.all(16.w),
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: AppTheme.getChosenColor(Get.find<SharedPreferenceHelper>().themeMode??"light"),
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 0.50.w, color: Color(0x99E6E6E6)),
           borderRadius: BorderRadius.circular(16.r),
@@ -47,7 +49,7 @@ class ItemTaskHistory extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) {
                   return CircleAvatar(
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppTheme.getChosenColor(Get.find<SharedPreferenceHelper>().themeMode??"light"),
                     child: Container(
                       child: Center(
                         child: Assets.icons.svg.icCheckboxInternet
@@ -75,7 +77,7 @@ class ItemTaskHistory extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Color(0xFF151515),
+                    // color: Color(0xFF151515),
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -89,7 +91,7 @@ class ItemTaskHistory extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Color(0xFF151515),
+                    // color: Color(0xFF151515),
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -104,7 +106,7 @@ class ItemTaskHistory extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.black38,
+                      color: Color(0x997C7C7C),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w800,
                     ),
@@ -135,7 +137,7 @@ class ItemTaskHistory extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.black12,
+                    color: Color(0x999F9D9D),
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w600,
                   ),

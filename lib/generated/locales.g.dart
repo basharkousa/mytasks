@@ -35,6 +35,8 @@ class LocaleKeys {
 
   static var clear_history = "clear_history";
 
+  static var settings = "settings";
+
   LocaleKeys._();
   static const title = 'title';
   static const message = 'message';
@@ -91,6 +93,7 @@ class Locales {
     "task_history": "Task History",
     "task_complted": "is completed",
     "clear_history": "Clear History",
+    "settings": "Settings",
 
   };
 
@@ -128,6 +131,7 @@ class Locales {
     "spent_time": "Aufgewendete Zeit:",
     "task_history": "Aufgabenverlauf",
     "task_complted": "ist erledigt",
-    "clear_history": "Clear History",
+    "clear_history": "Verlauf löschen",
+    "settings": "Einstellungen",
   };
 }

@@ -30,7 +30,7 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
               start: Dimens.mainMargin, end: Dimens.mainMargin),
           child: RefreshIndicator(
             onRefresh: controller.onRefresh,
-            color: AppColors.lightAccent,
+            color: Get.theme.colorScheme.secondary,
             child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(

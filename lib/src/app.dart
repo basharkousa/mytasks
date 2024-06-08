@@ -39,11 +39,7 @@ class App extends StatelessWidget {
           debugShowMaterialGrid: false,
           title: "My Tasks App",
           // theme: AppTheme.darkTheme(Get.find<SharedPreferenceHelper>().currentLanguage??'ar'),
-          theme: Get.find<SharedPreferenceHelper>().isDarkMode
-              ? AppTheme.darkTheme(
-              Get.find<SharedPreferenceHelper>().currentLanguage ?? 'en')
-              : AppTheme.lightTheme(
-              Get.find<SharedPreferenceHelper>().currentLanguage ?? 'en'),
+          theme: AppTheme.getAppThem(Get.find<SharedPreferenceHelper>().themeMode??'dark'),
           initialRoute: SplashScreenPage.route,
           // home:const SplashScreenPage(),
           getPages: Routes.getPages,

@@ -4,6 +4,8 @@ import 'package:mytasks/generated/fonts.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mytasks/src/configs/app_theme.dart';
+import 'package:mytasks/src/data/local/datasources/sharedpref/shared_preference_helper.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
@@ -54,7 +56,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
           config: AppFlowyBoardConfig(
               boardCornerRadius: 10.r,
               groupCornerRadius: 16.r,
-              groupBackgroundColor: Colors.white,
+              groupBackgroundColor: AppTheme.getChosenColor(Get.find<SharedPreferenceHelper>().themeMode??"light"),
               groupBodyPadding: EdgeInsets.all(2.0.h),
               groupMargin: EdgeInsets.all(4.0.h),
               groupHeaderPadding: EdgeInsets.all(4.h)),
@@ -105,6 +107,10 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
           cardBuilder: (context, group, groupItem) {
             final taskItemFlowy = groupItem as TaskItemFlowy;
             return AppFlowyGroupCard(
+              decoration: BoxDecoration(
+                color: BasicTools.getSectionColor(group),
+                borderRadius: BorderRadiusDirectional.all(Radius.circular(8.r))
+              ),
               key: ObjectKey(taskItemFlowy),
               child: Container(
                   width: Get.width / 2,
@@ -118,7 +124,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
                   ),
                   child: Container(
                     decoration: ShapeDecoration(
-                      color: Colors.white,
+                      color: AppTheme.getChosenColor(Get.find<SharedPreferenceHelper>().themeMode??"light"),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(8.r),
@@ -279,7 +285,7 @@ class ProjectDetailsScreen extends GetWidget<ProjectDetailsController> {
       child: Icon(
         Icons.keyboard_control_outlined,
         size: 18.w,
-        color: Colors.black38,
+        // color: Colors.black38,
       ),
     );
   }

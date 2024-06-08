@@ -306,7 +306,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.r),
             borderSide: BorderSide(
-              // color: AppColors.lightAccent,
+              // color: Get.theme.colorScheme.secondary,,
             )
           //  when the TextFormField in focused
         ),

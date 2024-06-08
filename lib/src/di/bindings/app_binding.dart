@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectdetailsscreen/project_details_controller.dart';
 import 'package:mytasks/src/ui/screens/projectsscreens/projectsscreen/projects_controller.dart';
+import 'package:mytasks/src/ui/screens/settingscreen/settings_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/addtaskscreen/add_task_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/commentsscreen/comments_controller.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/edittaskscreen/edit_task_controller.dart';
@@ -58,6 +59,10 @@ class AppBindings extends Bindings {
 
     Get.lazyPut<TaskHistoryController>(() {
       return TaskHistoryController();
+    }, fenix: true);
+
+    Get.lazyPut<SettingsController>(() {
+      return SettingsController();
     }, fenix: true);
 
   }

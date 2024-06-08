@@ -32,5 +32,6 @@
   "spent_time": "Aufgewendete Zeit:",
   "task_history": "Aufgabenverlauf",
   "task_complted": "ist erledigt",
-  "clear_history": "Clear History"
+  "clear_history": "Verlauf löschen",
+  "settings": "Einstellungen"
 }
