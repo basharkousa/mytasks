@@ -8,13 +8,13 @@ This project is using MVVM structure and the latest techniques for Flutter best 
 
 ## Features
 
-1.A kanban board for tasks, where users can create, edit, and move tasks between different columns (e.g. "To Do", "In Progress", "Done").
- A timer function that allows users to start and stop tracking the time spent on each task.
- A history of completed tasks, including the time spent on each task and the date it was completed.
- Users are able to Comment on each task.
-5 Customizable themes: Users Allowed to customize the look and feel of the app by choosing from a selection of pre-defined color schemes.
-6 Offline functionality: The app is allowed to work offline to show the history activities.
- Multi-language support: The app is supported for different languages (English,German), this will make the app more accessible to a global audience.
+1. A kanban board for tasks, where users can create, edit, and move tasks between different columns (e.g. "To Do", "In Progress", "Done"). 
+2. A timer function that allows users to start and stop tracking the time spent on each task. 
+3. A history of completed tasks, including the time spent on each task and the date it was completed. 
+4. Users are able to Comment on each task. 
+5. Customizable themes: Users Allowed to customize the look and feel of the app by choosing from a selection of pre-defined color schemes. 
+6. Offline functionality: The app is allowed to work offline to show the history activities. 
+7. Multi-language support: The app is supported for different languages (English,German), this will make the app more accessible to a global audience.
 
 ## Structure
 
