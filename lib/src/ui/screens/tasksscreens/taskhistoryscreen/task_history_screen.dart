@@ -1,21 +1,15 @@
 import 'package:get/get.dart';
-import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/generated/locales.g.dart';
-import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/ui/screens/tasksscreens/taskhistoryscreen/task_history_controller.dart';
 import 'package:mytasks/src/ui/widgets/appbars/app_bar_default.dart';
-import 'package:mytasks/src/ui/widgets/appbars/app_bar_projects.dart';
 import 'package:mytasks/src/ui/widgets/buttons/button_default.dart';
-import 'package:mytasks/src/ui/widgets/common/default_textfield_widget.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
-import 'package:mytasks/src/ui/widgets/common/getx_state_widget.dart';
 import 'package:mytasks/src/ui/widgets/items/item_comment.dart';
 import 'package:mytasks/src/ui/widgets/items/item_task_history.dart';
-import 'package:mytasks/src/utils/basic_tools.dart';
 import 'package:shimmer/shimmer.dart';
 
 class TaskHistoryScreen extends GetWidget<TaskHistoryController> {
@@ -98,26 +92,6 @@ class TaskHistoryScreen extends GetWidget<TaskHistoryController> {
               itemCount: data.length ?? 0);
       ;
     });
-  }
-
-  Widget buildLoadingCommentsWidget() {
-    return Shimmer.fromColors(
-      baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
-      highlightColor:
-          Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
-      child: ListView.separated(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return ItemCommentShimmer();
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 10.h,
-            );
-          },
-          itemCount: 4),
-    );
   }
 
   buildButtonClearHistory() {

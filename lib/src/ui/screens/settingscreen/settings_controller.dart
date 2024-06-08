@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytasks/src/configs/app_theme.dart';
 import 'package:mytasks/src/data/local/datasources/sharedpref/shared_preference_helper.dart';

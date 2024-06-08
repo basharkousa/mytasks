@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mytasks/generated/assets.gen.dart';
 import 'package:mytasks/src/data/models/commentsmodels/commentsresponse/comment_model.dart';
-import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 import 'package:mytasks/src/utils/helper/date_helper.dart';
 
 class ItemComment extends StatelessWidget {

@@ -5,12 +5,10 @@ import '../../data/local/datasources/sharedpref/shared_preference_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AsyncBindings extends Bindings {
-
   AsyncBindings();
 
   @override
-  Future dependencies() async{
-
+  Future dependencies() async {
     await Get.putAsync<Database>(() async {
       var databasesPath = await getDatabasesPath();
       //
@@ -19,8 +17,8 @@ class AsyncBindings extends Bindings {
       // await deleteDatabase(path);
       Database database = await openDatabase(path, version: 1,
           onCreate: (Database db, int version) async {
-            // When creating the db, create the table
-            await db.execute('''
+        // When creating the db, create the table
+        await db.execute('''
         CREATE TABLE ${DBConstants.TASK_HISTORY} (
           ${DBConstants.ID} TEXT PRIMARY KEY,
           ${DBConstants.PROJECT_ID} TEXT,
@@ -32,24 +30,18 @@ class AsyncBindings extends Bindings {
           ${DBConstants.SPENT_TIME} INTEGER
         )
       ''');
-          });
+      });
 
       return database;
-    }, permanent: true); // Yes, we do get tag and permanent properties with this as well
-
+    }, permanent: true);
 
     await Get.putAsync<SharedPreferences>(() async {
       // final prefs = await SharedPreferences.getInstance();
       // await prefs.setString('name', 'Batman');
       return await SharedPreferences.getInstance();
-    }, permanent: true); // Yes, we do get tag and permanent properties with this as well
-
-   await Get.putAsync<SharedPreferenceHelper>(() async {
-
-     return SharedPreferenceHelper(Get.find<SharedPreferences>());
-   }, permanent: true); // Yes, we do get tag and permanent properties with this as well
-
-   // Get.put(SharedPreferenceHelper(Get.find()));
-
+    }, permanent: true);
+    await Get.putAsync<SharedPreferenceHelper>(() async {
+      return SharedPreferenceHelper(Get.find<SharedPreferences>());
+    }, permanent: true);
   }
 }

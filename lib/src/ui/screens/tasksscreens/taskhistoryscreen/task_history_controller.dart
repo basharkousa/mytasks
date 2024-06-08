@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mytasks/src/data/models/api_state.dart';
 import 'package:mytasks/src/data/models/tasksmodels/tasksresponse/task_model.dart';
 import 'package:mytasks/src/data/repository.dart';
 

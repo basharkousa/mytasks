@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/ui/widgets/buttons/button_rounded.dart';
 import 'package:mytasks/src/ui/widgets/common/extentions.dart';
 

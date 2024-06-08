@@ -32,7 +32,6 @@ class AddTaskController extends GetxController{
 
   @override
   void onInit() {
-
     super.onInit();
   }
 
@@ -46,10 +45,6 @@ class AddTaskController extends GetxController{
   Future<void> onRefresh() async{
 
   }
-
-  // void goToProjectDetailsScreen(ProjectModel project) {
-  //   Get.toNamed(ProjectDetailsScreen.route,arguments: project);
-  // }
 
   var addTaskResponseLiveData = ApiState<TaskModel>.completed(null).obs;
   void postTask() {
@@ -69,4 +64,5 @@ class AddTaskController extends GetxController{
     });
     print(taskForm.toString());
   }
+
 }

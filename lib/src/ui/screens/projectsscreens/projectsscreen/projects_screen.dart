@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:mytasks/generated/locales.g.dart';
-import 'package:mytasks/src/configs/colors.dart';
 import 'package:mytasks/src/configs/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,27 +31,29 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
             onRefresh: controller.onRefresh,
             color: Get.theme.colorScheme.secondary,
             child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                SizedBox(height: 16.h,),
-                GetXStateWidget(
-                  snapshotLiveData: controller.projectsResponseLiveData,
-                  loadingWidget: buildLoadingProjectsWidget(),
-                  contentWidget: (data) {
-                    return buildProjectsWidget(data!);
-                  },
-                  onRetryClicked: (){
-                    controller.getProjects();
-                  },
-                ),
-                SizedBox(
-                  height: 48.h,
-                ),
-              ],
-            )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    GetXStateWidget(
+                      snapshotLiveData: controller.projectsResponseLiveData,
+                      loadingWidget: buildLoadingProjectsWidget(),
+                      contentWidget: (data) {
+                        return buildProjectsWidget(data!);
+                      },
+                      onRetryClicked: () {
+                        controller.getProjects();
+                      },
+                    ),
+                    SizedBox(
+                      height: 48.h,
+                    ),
+                  ],
+                )),
           ),
         ),
         // bottomNavigationBar: buildUpdateButton(context),
@@ -65,9 +66,12 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          return ItemProject(project: data.projects?[index],onClick: (project){
-            controller.goToProjectDetailsScreen(project);
-          },);
+          return ItemProject(
+            project: data.projects?[index],
+            onClick: (project) {
+              controller.goToProjectDetailsScreen(project);
+            },
+          );
         },
         separatorBuilder: (context, index) {
           return Container(
@@ -81,20 +85,19 @@ class ProjectsScreen extends GetWidget<ProjectsController> {
     return Shimmer.fromColors(
       baseColor: Get.isDarkMode ? Colors.white12 : Colors.grey[300]!,
       highlightColor:
-      Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
+          Get.isDarkMode ? Colors.white12.withOpacity(0.5) : Colors.grey[100]!,
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return ItemProjectShimmer();
-        },
-        separatorBuilder: (context, index) {
-          return Container(
-            height: 10.h,
-          );
-        },
-        itemCount: 4),
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return ItemProjectShimmer();
+          },
+          separatorBuilder: (context, index) {
+            return Container(
+              height: 10.h,
+            );
+          },
+          itemCount: 4),
     );
-
   }
 }

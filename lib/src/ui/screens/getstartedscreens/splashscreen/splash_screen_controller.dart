@@ -20,9 +20,6 @@ class SplashScreenController extends GetxController {
     super.onInit();
   }
 
-
-
-
   Future<void> goToProjectsScreen() async {
     Get.offNamed(ProjectsScreen.route);
   }
