@@ -1,6 +1,6 @@
 # mytasks
 
-MyTasks is A kanban board for tasks, where users can create, edit, and move tasks between different columns (e.g. "To Do", "In Progress", "Done").
+MyTasks is a kanban board for tasks, where users can create, edit, and move tasks between different columns (e.g. "To Do", "In Progress", "Done").
 
 ## Getting Started
 
@@ -11,8 +11,8 @@ This project is using MVVM structure and the latest techniques for Flutter best 
 1. A kanban board for tasks, where users can create, edit, and move tasks between different columns (e.g. "To Do", "In Progress", "Done"). 
 2. A timer function that allows users to start and stop tracking the time spent on each task. 
 3. A history of completed tasks, including the time spent on each task and the date it was completed. 
-4. Users are able to Comment on each task. 
-5. Customizable themes: Users Allowed to customize the look and feel of the app by choosing from a selection of pre-defined color schemes. 
+4. Users are able to comment on each task. 
+5. Customizable themes: Users allowed to customize the look and feel of the app by choosing from a selection of pre-defined color schemes. 
 6. Offline functionality: The app is allowed to work offline to show the history activities. 
 7. Multi-language support: The app is supported for different languages (English,German), this will make the app more accessible to a global audience.
 
@@ -42,10 +42,10 @@ which separate the project to layers (Ui layer, Presentation layer, Data layer).
 5. App Configuration: We have configs folder where we have (Navigation Routes, Theme, Colors, Dimens).
 
 
-## ToDo Features
+## To Do Features
 
 1. Background Services: 
- I will use Work Manager package to organize and schedule the InPrgress tasks in background and let them
+ I will use Work Manager package to organize and schedule the InProgress tasks in background and let them
  working in the background when the app is terminated.
 2. Analytics: Implement analytics to track how users are using the app and identify areas for improvement.
 3. Notifications: Add push notifications to remind users of upcoming tasks
