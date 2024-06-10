@@ -29,17 +29,17 @@ which separate the project to layers (Ui layer, Presentation layer, Data layer).
  Presentation layer is the ViewModel which is in our case are the Controllers, where the business logic
  is done there (I added each controller in the same folder of its screen).
 
-3. Data layer: Is in our case the Repository where we inject the LocalData and Remote data sources instances in
+3. Data layer: Is in our case the Repository where we inject the LocaldDta and RemoteData sources instances in
  it.
- *. Remote Data Source: Where we inject all the instances for remote communications protocols such as http, graphQl..
- In out case we have two api clients (http, dio).
- *.Local Data Source: Where we inject all the instances for local data such as (SharedPreferences, Sqlite)
- *.We have model folder which has all the the App's model classes.
+ *. *Remote Data Source*: Where we inject all the instances for remote communications protocols such as http, graphQl..
+   In our case we have two api clients (http, dio).
+ *. *Local Data Source*: Where we inject all the instances for local data such as (SharedPreferences, Sqlite). 
+ *. We have also model folder which has all the the App's model classes.
 
-4. Dependency Injection: We have di folder where we declare all the App dependencies to inject them later where we
+5. Dependency Injection: We have di folder where we declare all the App dependencies to inject them later where we
  need them.
 
-5. App Configuration: We have configs folder where we have (Navigation Routes, Theme, Colors, Dimens).
+6. App Configuration: We have configs folder where we have (Navigation Routes, Theme, Colors, Dimens).
 
 
 ## To Do Features
@@ -49,7 +49,6 @@ which separate the project to layers (Ui layer, Presentation layer, Data layer).
  working in the background when the app is terminated.
 2. Analytics: Implement analytics to track how users are using the app and identify areas for improvement.
 3. Notifications: Add push notifications to remind users of upcoming tasks
-4. Analytics: Implement analytics to track how users are using the app and identify areas for improvement.
    
  A few links to reach me out:
 
